@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="#193C30" name="theme-color"/>
+    <title>
+        Book Your Stay | Moffat Bay Lodge
+    </title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Caveat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../css/booking-shared.css" rel="stylesheet"/>
+    <link href="../css/reservation.css" rel="stylesheet"/>
+    <script defer="" src="../js/shared.js"></script>
+    <script defer="" src="../js/reservation.js"></script>
+</head>
+
+<body class="reservation-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="header-container">
+                <a class="site-logo" href="../index.html" aria-label="Moffat Bay Lodge home">
+                    <span class="logo-main">MOFFAT BAY</span>
+                    <span class="logo-sub">LODGE</span>
+                </a>
+                <button
+                    id="menuToggle"
+                    class="menu-toggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                    aria-controls="mainNav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a href="../attractions.html">Attractions</a>
+                    <a href="../login.html">Login</a>
+                </nav>
+                <a class="btn btn-primary" href="reservation.html">Book Your Stay &rarr;</a>
+            </div>
+        </header>
+        <section aria-labelledby="pageTitle" class="booking-hero">
+            <div class="booking-hero-content content-container">
+                <span class="section-eyebrow" id="bannerEyebrow">
+                    A little more time away
+                </span>
+                <h1 id="pageTitle">
+                    Make yourself at home.
+                </h1>
+                <p id="bannerDescription">
+                    Choose your dates, review the little details, and find your place among the trees.
+                </p>
+            </div>
+            <div aria-hidden="true" class="booking-hero-tear torn-edge"></div>
+        </section>
+        <main class="booking-main content-container" id="mainContent">
+            <div aria-label="Booking progress: your stay, review, confirmed" class="progress" id="progress">
+                <div class="step on" id="step1">
+                    <b>1</b>Your stay
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step2">
+                    <b>2</b>Review
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step3">
+                    <b>3</b>Confirmed
+                </div>
+            </div>
+            <section aria-label="Book a stay at Moffat Bay Lodge" class="booking-layout" id="bookingView">
+            <div>
+                <div class="sheet" id="formSheet">
+                    <div class="heading-row">
+                        <div>
+                            <span class="eyebrow">
+                                Step one &middot; plan your getaway
+                            </span>
+                            <h2>Your stay, your way.</h2>
+                            <p class="muted small compact-copy">
+                                A few details and we'll have your reservation ready to review.
+                            </p>
+                        </div>
+                    </div>
+                    <form id="bookingForm" novalidate="">
+                        <div class="section-title">
+                            Your island stay
+                        </div>
+                        <div class="form-grid">
+                            <div class="field wide">
+                                <label for="room">Room</label>
+                                <select id="room" required="">
+                                    <option value="morel">
+                                        The Morel the Merrier &mdash; two full beds
+                                    </option>
+                                    <option value="knotty">
+                                        The Knotty Pine &mdash; one queen
+                                    </option>
+                                    <option value="hoots">
+                                        The Two Hoots &mdash; two queen beds
+                                    </option>
+                                    <option value="suite">
+                                        The Unbe-leaf-able Suite &mdash; one king
+                                    </option>
+                                </select>
+                                <span class="helper" id="capacityHelp">
+                                    Sleeps up to 4 guests &middot; Pet-friendly
+                                </span>
+                            </div>
+                            <div class="field">
+                                <label for="checkin">
+                                    Check-in
+                                </label>
+                                <input id="checkin" required="" type="date"/>
+                            </div>
+                            <div class="field">
+                                <label for="checkout">
+                                    Check-out
+                                </label>
+                                <input id="checkout" required="" type="date"/>
+                            </div>
+                            <div class="field wide">
+                                <label for="guests">
+                                    Guests
+                                </label>
+                                <select id="guests" required="">
+                                    <option value="1">
+                                        1 guest
+                                    </option>
+                                    <option selected="" value="2">
+                                        2 guests
+                                    </option>
+                                    <option value="3">
+                                        3 guests
+                                    </option>
+                                    <option value="4">
+                                        4 guests
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="section-title">
+                            Guest details
+                        </div>
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="first">
+                                    First name
+                                </label>
+                                <input autocomplete="given-name" id="first" maxlength="50" required="" value="Jane"/>
+                            </div>
+                            <div class="field">
+                                <label for="last">
+                                    Last name
+                                </label>
+                                <input autocomplete="family-name" id="last" maxlength="50" required="" value="Doe"/>
+                            </div>
+                            <div class="field wide">
+                                <label for="email">
+                                    Email address
+                                </label>
+                                <input autocomplete="email" id="email" maxlength="120" required="" type="email" value="doe@example.com"/>
+                            </div>
+                        </div>
+                        <div class="error hidden" id="formError" role="alert"></div>
+                        <div class="button-row">
+                            <button class="btn btn-primary" id="reviewButton" type="submit">
+                                Review my reservation
+                                <span aria-hidden="true">
+                                    &rarr;
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <aside class="aside">
+                <div class="sheet room-aside-sheet">
+                    <div aria-label="Photo preview of your chosen room" class="aside-top">
+                        <img alt="" class="aside-room-photo" decoding="async" id="asidePhotoA"/>
+                        <img alt="" class="aside-room-photo" decoding="async" id="asidePhotoB"/>
+                        <div aria-hidden="true" class="aside-photo-shade"></div>
+                        <div class="aside-photo-label">
+                            <span>
+                                YOUR SELECTED ROOM
+                            </span>
+                            <strong id="asidePhotoCaption">
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="aside-body">
+                        <span class="eyebrow">
+                            Your travel notes
+                        </span>
+                        <h3>A room with a view</h3>
+                        <span class="room-swatch">
+                            ✦ All four rooms pet-friendly
+                        </span>
+                        <div class="info-list">
+                            <div class="pair">
+                                <span>
+                                    Room
+                                </span>
+                                <strong id="asideRoom"></strong>
+                            </div>
+                            <div class="pair">
+                                <span>
+                                    Your dates
+                                </span>
+                                <strong id="asideDates"></strong>
+                            </div>
+                            <div class="pair">
+                                <span>
+                                    Guests
+                                </span>
+                                <strong id="asideGuests"></strong>
+                            </div>
+                            <div class="pair">
+                                <span>
+                                    Length of stay
+                                </span>
+                                <strong id="asideNights"></strong>
+                            </div>
+                            <div class="pair">
+                                <span>
+                                    Rate
+                                </span>
+                                <strong id="asideRate"></strong>
+                            </div>
+                        </div>
+                        <div class="pair price-pair">
+                            <span>
+                                Estimated subtotal
+                            </span>
+                            <strong id="asideTotal"></strong>
+                        </div>
+                            <div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+        <section aria-labelledby="confirmationTitle" class="confirmation-view hidden" id="confirmationView">
+            <article class="confirmation-card">
+                <div aria-hidden="true" class="confirmation-check">
+                    &checkmark;
+                </div>
+                <p class="eyebrow confirmation-eyebrow">
+                    Your island adventure is booked
+                </p>
+                <h1 id="confirmationTitle" tabindex="-1">
+                    You're on your way to Moffat Bay!
+                </h1>
+                <p class="confirmation-intro">
+                    Your reservation has been confirmed. Save your confirmation number to find it later.
+                </p>
+                <div aria-label="Confirmation number" class="confirmation-number" id="confirmationReference"></div>
+                <div aria-label="Confirmed reservation details" class="confirmation-summary">
+                    <div class="confirmation-detail">
+                        <span>
+                            Guest
+                        </span>
+                    <strong id="confirmedGuest"></strong>
+                </div>
+                <div class="confirmation-detail">
+                    <span>
+                        Room
+                    </span>
+                    <strong id="confirmedRoom"></strong>
+                </div>
+                <div class="confirmation-detail">
+                    <span>
+                        Stay
+                    </span>
+                    <strong id="confirmedStay"></strong>
+                </div>
+                <div class="confirmation-detail">
+                    <span>
+                        Subtotal
+                    </span>
+                    <strong id="confirmedTotal"></strong>
+                </div>
+            </div>
+            <div class="confirmation-actions">
+                <button class="btn btn-primary" id="confirmationLookup" type="button">
+                    Find my reservation
+                    <span aria-hidden="true">
+                        &rarr;
+                    </span>
+                </button>
+                <button class="btn btn-outline" id="confirmationRestart" type="button">
+                    Make another test reservation
+                </button>
+            </div>
+        </article>
+   </section>
+</main>
+
+<div class="torn-edge sunset-footer-tear" aria-hidden="true"></div>
+    <footer class="site-footer">
+        <div class="content-container footer-container">
+            <div class="footer-brand">
+                <h2>Moffat Bay Lodge</h2>
+                <p>
+                    Your peaceful escape on Joviedsa Island,
+                    Washington.
+                </p>
+            </div>
+
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li><a href="../index.html#accommodations">Accommodations</a></li>
+                    <li><a href="../attractions.html">Island Adventures</a></li>
+                    <li><a href="reservation.html">Reservations</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-contact">
+                <h3>Get in Touch</h3>
+                <p>Joviedsa Island, Washington</p>
+                <p>
+                    <a href="../about.html#contact">Contact Us &rarr;</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Moffat Bay Lodge. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+<dialog aria-labelledby="dialogTitle" id="reviewDialog">
+    <div class="dialog-head">
+        <span>
+            Review your reservation
+        </span>
+        <button aria-label="Close reservation review" class="dialog-close" id="closeDialog" type="button">
+            &times;
+        </button>
+    </div>
+    <div class="review-card" id="reviewModalCard">
+    </div>
+</dialog>
+</div>
+</body>
+</html>

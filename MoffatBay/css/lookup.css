@@ -1,0 +1,110 @@
+.booking-main-lookup {
+    padding-top: 35px;
+}
+
+.lookup-container {
+    display: block;
+    grid-template-columns: minmax(0, 1.3fr) minmax(210px, .7fr);
+    align-items: start;
+    width: 100%;
+    max-width: none;
+    gap: 24px;
+    margin: 10px auto 0;
+}
+
+.lookup-panel h2 {
+    font-size: clamp(28px, 3.3vw, 37px);
+    margin: 7px 0 10px;
+}
+
+.lookup-panel p {
+    margin-bottom: 14px;
+}
+
+.lookup-form {
+    display: grid;
+    gap: 17px;
+    margin-top: 23px;
+}
+
+.lookup-form label {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.lookup-form button {
+    justify-self: start;
+}
+
+.lookup-hint {
+    background: #e6e8d9;
+    border: 1px solid #d4d6c4;
+    border-radius: 4px;
+    padding: 21px;
+    color: #4e5f4f;
+    font-size: 12px;
+}
+
+.lookup-hint h3 {
+    margin: 5px 0 10px;
+    font-size: 23px;
+}
+
+.lookup-hint code {
+    display: block;
+    padding: 9px 11px;
+    margin: 9px 0 14px;
+    color: var(--forest);
+    background: #fff8e7;
+    border: 1px solid #d3d1bd;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.lookup-hint .detail-label {
+    display: block;
+}
+
+.lookup-hint .btn {
+    margin-top: 10px;
+}
+
+.lookup-result {
+    padding: 19px;
+    margin-top: 24px;
+    border: 1px solid #cedfcb;
+    background: #eaf1e6;
+    border-radius: 4px;
+}
+
+.lookup-result h3 {
+    font-size: 23px;
+    margin: 13px 0;
+}
+
+.lookup-result p {
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.lookup-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 30px;
+    background: #dae9ce;
+    color: #476044;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+@media (max-width: 850px) {
+    .lookup-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .lookup-form button {
+        width: 100%;
+    }
+}

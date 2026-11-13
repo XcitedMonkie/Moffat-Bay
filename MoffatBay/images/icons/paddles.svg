@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 64 64"
+     fill="none"
+     stroke="#193C30"
+     stroke-width="1.5"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- Paddle shafts -->
+    <path d="M12 7L52 57"/>
+    <path d="M52 7L12 57"/>
+
+    <!-- Left paddle blade -->
+    <path d="M8 5Q2 13 10 23L19 30L29 20L20 10Q14 3 8 5Z"/>
+
+    <!-- Right paddle blade -->
+    <path d="M56 5Q62 13 54 23L45 30L35 20L44 10Q50 3 56 5Z"/>
+
+    <!-- Decorative blade details -->
+    <path d="M15 11L23 19"/>
+    <path d="M49 11L41 19"/>
+
+</svg>

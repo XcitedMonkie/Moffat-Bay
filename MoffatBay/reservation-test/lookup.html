@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="#193C30" name="theme-color"/>
+    <title>
+        Find Your Reservation | Moffat Bay Lodge
+    </title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Caveat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../css/booking-shared.css" rel="stylesheet"/>
+    <link href="../css/lookup.css" rel="stylesheet"/>
+    <script defer="" src="../js/shared.js"></script>
+    <script defer="" src="../js/lookup.js"></script>
+</head>
+
+<body class="lookup-page">
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="header-container">
+                <a class="site-logo" href="../index.html" aria-label="Moffat Bay Lodge home">
+                    <span class="logo-main">MOFFAT BAY</span>
+                    <span class="logo-sub">LODGE</span>
+                </a>
+                <button
+                    id="menuToggle"
+                    class="menu-toggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                    aria-controls="mainNav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a href="../attractions.html">Attractions</a>
+                    <a href="../login.html">Login</a>
+                </nav>
+                <a class="btn btn-primary" href="reservation.html">Book Your Stay &rarr;</a>
+            </div>
+        </header>
+        <section aria-labelledby="pageTitle" class="booking-hero">
+            <div class="booking-hero-content content-container">
+                <span class="section-eyebrow">
+                    Your island itinerary
+                </span>
+                <h1 id="pageTitle">
+                    Find your reservation.
+                </h1>
+                <p>Your plans are only a confirmation number away.</p>
+            </div>
+            <div aria-hidden="true" class="booking-hero-tear torn-edge"></div>
+        </section>
+        <main class="booking-main booking-main-lookup content-container">
+            <section aria-label="Look up a reservation" class="lookup-container" id="lookupView">
+                <div class="sheet lookup-panel">
+                    <span class="eyebrow">
+                        Your plans, all in one place
+                    </span>
+                    <h2>Find your reservation.</h2>
+                    <p class="small muted">
+                        Already booked? Enter your confirmation number and email to view your stay.</p>
+                    <form class="lookup-form" id="lookupForm" novalidate="">
+                        <div>
+                            <label for="lookupNumber">
+                                Confirmation number
+                            </label>
+                            <input autocomplete="off" id="lookupNumber" placeholder="e.g. MBL-DEMO24" required=""/>
+                        </div>
+                        <div>
+                            <label for="lookupEmail">
+                                Email address used to book
+                            </label>
+                            <input id="lookupEmail" placeholder="you@example.com" required="" type="email"/>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Find reservation &rarr;
+                        </button>
+                    </form>
+                    <div class="error hidden" id="lookupError" role="alert"></div>
+                    <div aria-live="polite" class="lookup-result hidden" id="lookupResult"></div>
+                </div>
+            </section>
+        </main>
+        <div class="torn-edge sunset-footer-tear" aria-hidden="true"></div>
+        <footer class="site-footer">
+            <div class="content-container footer-container">
+                <div class="footer-brand">
+                    <h2>Moffat Bay Lodge</h2>
+                    <p>
+                        Your peaceful escape on Joviedsa Island,
+                        Washington.
+                    </p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../index.html#accommodations">Accommodations</a></li>
+                        <li><a href="../attractions.html">Island Adventures</a></li>
+                        <li><a href="reservation.html">Reservations</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-contact">
+                    <h3>Get in Touch</h3>
+                    <p>Joviedsa Island, Washington</p>
+                    <p>
+                        <a href="../about.html#contact">Contact Us &rarr;</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Moffat Bay Lodge. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

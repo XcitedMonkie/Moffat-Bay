@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 64 64"
+     fill="none"
+     stroke="#193C30"
+     stroke-width="1.5"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- Mountain peaks -->
+    <path d="M4 48L23 19L36 37L44 26L60 48"/>
+
+    <!-- Snowcap details -->
+    <path d="M15 31L23 38L30 29"/>
+    <path d="M39 33L44 38L49 33"/>
+
+    <!-- Water -->
+    <path d="M4 54Q18 49 32 54T60 54"/>
+    <path d="M8 60Q20 55 32 60T56 60"/>
+
+</svg>

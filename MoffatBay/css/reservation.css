@@ -1,0 +1,573 @@
+.progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #898c7b;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.step b {
+    display: grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    border: 1px solid #c9bda9;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.step.on {
+    color: var(--forest);
+}
+
+.step.on b {
+    color: var(--cream);
+    background: var(--forest);
+    border-color: var(--forest);
+}
+
+.step.done b {
+    color: var(--forest);
+    background: #dbe9d8;
+    border-color: #bcd0b8;
+}
+
+.step-line {
+    width: 47px;
+    height: 1px;
+    background: #cfc3ae;
+}
+
+.booking-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, .88fr);
+    gap: 29px;
+    align-items: start;
+}
+
+.heading-row {
+    margin-bottom: 22px;
+}
+
+.heading-row h2,
+.review-card h2 {
+    margin: 6px 0;
+    font-size: clamp(28px, 3.3vw, 37px);
+    font-weight: 600;
+}
+
+.section-title {
+    margin: 23px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e3d7c6;
+    color: var(--forest);
+    font-size: 13px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.field.wide {
+    grid-column: 1 / -1;
+}
+
+.helper {
+    font-size: 11px;
+    color: #77786c;
+}
+
+.optional-label {
+    font-weight: 400;
+}
+
+.compact-copy {
+    margin: 0;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 27px;
+}
+
+/* Sidebar photo changes when the room dropdown changes. */
+.aside {
+    position: sticky;
+    top: 22px;
+}
+
+.room-aside-sheet {
+    padding: 0;
+    overflow: hidden;
+}
+
+.room-aside-sheet::before {
+    display: none;
+}
+
+.aside-top {
+    height: 225px;
+    background: #68766a;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.aside-room-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity .32s ease-in-out;
+}
+
+.aside-room-photo.is-visible {
+    opacity: 1;
+}
+
+.aside-photo-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 42%, rgba(7, 27, 20, .78));
+    pointer-events: none;
+}
+
+.aside-photo-label {
+    position: absolute;
+    right: 18px;
+    bottom: 15px;
+    left: 18px;
+    color: var(--cream);
+    pointer-events: none;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, .35);
+}
+
+.aside-photo-label span {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 9px;
+    letter-spacing: .18em;
+    font-weight: 700;
+}
+
+.aside-photo-label strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 21px;
+    line-height: 1.17;
+    font-weight: 600;
+}
+
+.aside-body {
+    padding: 23px 24px 26px;
+}
+
+.aside h3 {
+    font-size: 23px;
+    margin: 6px 0 10px;
+}
+
+.room-swatch {
+    display: inline-block;
+    padding: 6px 11px;
+    color: #566949;
+    background: #edf0e2;
+    border: 1px solid #d7dfce;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.info-list {
+    display: grid;
+    gap: 13px;
+    padding: 17px 0;
+    margin: 22px 0;
+    border-top: 1px dashed #d6c7af;
+    border-bottom: 1px dashed #d6c7af;
+}
+
+.pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 15px;
+    font-size: 13px;
+}
+
+.pair span:first-child {
+    color: #687368;
+}
+
+.pair strong {
+    text-align: right;
+}
+
+.price-pair {
+    color: var(--forest);
+    font-size: 18px;
+}
+
+/* Native <dialog>: this is an IN-PAGE modal, not a pop-up browser window. */
+#reviewDialog {
+    width: min(670px, calc(100vw - 28px));
+    max-height: min(91vh, 850px);
+    padding: 0;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--forest);
+    box-shadow: 0 25px 100px rgba(5, 20, 13, .42);
+    overflow-y: auto;
+    margin: auto;
+}
+
+#reviewDialog::backdrop {
+    background: rgba(9, 28, 21, .69);
+    backdrop-filter: blur(3px);
+}
+
+.dialog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 25px;
+    background: var(--forest);
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.dialog-close {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #c3ccbe76;
+    border-radius: 50%;
+    color: white;
+    background: transparent;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.dialog-close:hover {
+    background: #ffffff1a;
+}
+
+.review-card {
+    background: var(--cream);
+    padding: 30px 32px;
+}
+
+.review-intro {
+    margin-bottom: 22px;
+    font-size: 13px;
+    color: #6f776c;
+}
+
+.review-hero {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px;
+    margin-bottom: 23px;
+    border-radius: 4px;
+    background: #eaf0e5;
+}
+.review-bed-icon {
+    width: 65px;
+    height: 65px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.review-room-details {
+    flex: 1;
+    min-width: 0;
+}
+.review-hero h3 {
+    font-size: 22px;
+    margin: 2px 0 5px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 23px;
+}
+
+.detail-value {
+    margin-top: 2px;
+    color: var(--forest);
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #d7c8b3;
+}
+
+.total-row strong {
+    font: 600 26px var(--font-heading);
+}
+
+.review-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.dialog-processing {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 12px;
+    color: var(--moss);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.spinner {
+    width: 17px;
+    height: 17px;
+    border: 2px solid #d9e1d4;
+    border-top-color: var(--forest);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Dedicated confirmation view from the supplied screenshot. */
+.confirmation-view {
+    max-width: 740px;
+    margin: 28px auto 0;
+}
+
+.confirmation-card {
+    position: relative;
+    background: var(--cream);
+    padding: 45px 58px 44px;
+    border: 1px solid #e0d2bb;
+    border-radius: 4px;
+    box-shadow: 0 16px 45px rgba(36, 45, 35, .11);
+    text-align: center;
+}
+
+.confirmation-card::before {
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+}
+
+.confirmation-check {
+    display: grid;
+    place-items: center;
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 28px;
+    background: #e6efdf;
+    color: var(--forest);
+    border: 2px solid #b2cbb0;
+    border-radius: 50%;
+    font: 46px/1 Georgia, serif;
+}
+
+.confirmation-eyebrow {
+    margin-bottom: 11px;
+    letter-spacing: .22em;
+}
+
+.confirmation-card h1 {
+    font-size: clamp(29px, 4vw, 37px);
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
+}
+
+.confirmation-intro {
+    max-width: 445px;
+    margin: 0 auto;
+    font-size: 15px;
+    color: #536f5f;
+}
+
+.confirmation-number {
+    margin: 30px 0 29px;
+    font: 600 clamp(29px, 4.5vw, 38px)/1.3 var(--font-heading);
+    letter-spacing: .055em;
+    overflow-wrap: anywhere;
+}
+
+.confirmation-summary {
+    display: grid;
+    gap: 12px;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 15px 0 17px;
+    border-top: 1px dashed #d6c5ac;
+    border-bottom: 1px dashed #d6c5ac;
+}
+
+.confirmation-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 15px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.confirmation-detail span {
+    flex-shrink: 0;
+    color: #748071;
+}
+
+.confirmation-detail strong {
+    text-align: right;
+}
+
+.confirmation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 27px;
+}
+
+.confirmation-actions .btn {
+    font: 700 13px/1.4 var(--font-body);
+    min-height: 48px;
+    padding: 13px 22px;
+}
+
+.confirmation-footnote {
+    text-align: center;
+    color: #7b816f;
+    font-size: 11px;
+    margin-top: 19px;
+}
+
+/* Keep the global header AND the green booking hero visible throughout
+   the reservation flow, including the dedicated confirmation screen.
+   Confirmation only swaps the content below the hero. */
+body.confirmed-page .booking-main {
+    padding-top: 35px;
+}
+
+body.confirmed-page .progress {
+    margin-bottom: 26px;
+}
+
+body.confirmed-page .confirmation-view {
+    margin-top: 14px;
+}
+
+@media (max-width: 850px) {
+    .booking-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .aside {
+        position: static;
+    }
+}
+
+@media (max-width: 660px) {
+    .form-grid,
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        font-size: 10px;
+        gap: 5px;
+    }
+
+    .step-line {
+        width: 18px;
+    }
+
+    .step b {
+        height: 23px;
+        width: 23px;
+    }
+
+    .button-row,
+    .review-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .button-row button,
+    .review-actions button {
+        width: 100%;
+    }
+
+    .review-card {
+        padding: 21px 20px;
+    }
+
+    .confirmation-card {
+        padding: 44px 20px 30px;
+    }
+
+    .confirmation-check {
+        width: 65px;
+        height: 65px;
+        margin-bottom: 24px;
+        font-size: 40px;
+    }
+
+    .confirmation-intro {
+        font-size: 14px;
+    }
+
+    .confirmation-number {
+        margin: 23px 0;
+    }
+
+    .confirmation-actions {
+        flex-direction: column;
+    }
+
+    .confirmation-actions .btn {
+        width: 100%;
+    }
+}

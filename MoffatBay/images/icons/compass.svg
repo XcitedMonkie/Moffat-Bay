@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 64 64"
+     fill="none"
+     stroke="#193C30"
+     stroke-width="1.5"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- Outer compass rings -->
+    <circle cx="32" cy="32" r="23"/>
+    <circle cx="32" cy="32" r="18"/>
+
+    <!-- Compass directions -->
+    <path d="M32 10V54M10 32H54"/>
+
+    <!-- Compass needle -->
+    <path d="M32 15L38 32L32 49L26 32Z"/>
+
+    <!-- Center pin -->
+    <circle cx="32" cy="32" r="3"/>
+
+    <!-- North and south markings -->
+    <path d="M32 3V9M32 55V61"/>
+
+</svg>

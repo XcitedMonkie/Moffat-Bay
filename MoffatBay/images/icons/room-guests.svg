@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="48"
+     height="48"
+     viewBox="0 0 48 48"
+     fill="none"
+     stroke="#193C30"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- Center person -->
+    <circle cx="24" cy="13" r="5"/>
+    <path d="M14 36v-4a10 10 0 0 1 20 0v4"/>
+
+    <!-- Left person -->
+    <circle cx="10" cy="19" r="4"/>
+    <path d="M3 35v-3a7 7 0 0 1 8-7"/>
+
+    <!-- Right person -->
+    <circle cx="38" cy="19" r="4"/>
+    <path d="M45 35v-3a7 7 0 0 0-8-7"/>
+
+</svg>

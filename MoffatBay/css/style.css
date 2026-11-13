@@ -1,0 +1,1178 @@
+
+/* =========================================
+   GLOBAL COLORS/TEXT/ETC
+========================================= */
+
+:root {
+    --forest: #193C30;
+    --moss: #44614B;
+    --parchment: #F2E8D5;
+    --driftwood: #B68A60;
+    --bay-blue: #263E49;
+    --text-muted: #3e4b40;
+    --text-secondary: #786e60;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', Arial, sans-serif;
+    --cream: #fffaf0;
+    --paper-note: #fff8e9;
+    --hero-text: #fff9ed;
+    --text-gold: #d9b98b;
+    --content-width: 1400px;
+    --button-radius: 5px;
+    --shadow-photo: 0 8px 20px rgba(36, 45, 35, 0.15);
+}
+
+/* =========================================
+   GLOBAL VARIABLES
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--font-body);
+    background-color: var(--parchment);
+    color: var(--forest);
+}
+p {
+    line-height: 1.7;
+}
+
+/* shared heading variables */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--forest);
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* reusable section */
+.content-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* shared decoration */
+.torn-edge {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    pointer-events: none;
+}
+.section-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--driftwood);
+}
+.section-divider {
+    width: 80px;
+    height: 1px;
+    margin: 20px 0;
+    background-color: var(--driftwood);
+}
+
+/* shared photo settings*/
+.photo-frame,
+.room-card,
+.adventure-polaroid {
+    box-shadow: var(--shadow-photo);
+}
+.photo-frame {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border: 7px solid var(--cream);
+}
+
+/* =========================================
+   HEADER AND NAVIGATION
+========================================= */
+
+.site-header {
+    background-color: var(--parchment);
+    width: 100%;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* logo */
+.site-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    color: var(--forest);
+}
+.logo-main {
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.logo-sub {
+    font-size: 16px;
+    letter-spacing: 5px;
+}
+
+/* navigation */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.main-nav a {
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--moss);
+}
+.main-nav a.active {
+    border-bottom: 2px solid var(--forest);
+    padding-bottom: 5px;
+}
+
+/* shared button variables*/
+.btn {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    border: none;
+    border-radius: var(--button-radius);
+    transition: background-color 0.2s ease;
+    padding: 14px 25px;
+    cursor: pointer;
+}
+.btn-primary {
+    background-color: var(--forest);
+    color: var(--cream);
+}
+.btn-primary:hover {
+    background-color: var(--moss);
+}
+
+
+/* accent button */
+.btn-accent {
+    padding: 15px 30px;
+    background-color: var(--moss);
+    color: var(--parchment);
+    border: 1px solid var(--driftwood);
+}
+.btn-accent:hover {
+    background-color: var(--forest);
+    color: var(--parchment);
+}
+.btn-compact {
+    padding: 14px 22px;
+    font-size: 15px;
+}
+
+/* nav for mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--forest);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.menu-toggle:focus-visible {
+    outline: 2px solid var(--forest);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+
+/* =========================================
+   RESPONSIVE HEADER
+========================================= */
+
+@media (max-width: 900px) {
+    .site-header {
+        padding: 20px;
+    }
+    .header-container {
+        flex-wrap: nowrap;
+    }
+    .header-container > .btn {
+        display: none;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background-color: var(--parchment);
+        box-shadow: var(--shadow-photo);
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .main-nav.is-open {
+        display: flex;
+    }
+}
+
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero {
+    min-height: 570px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--forest);
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(12, 43, 33, 0.96) 0%,
+            rgba(12, 43, 33, 0.85) 25%,
+            rgba(12, 43, 33, 0.35) 55%,
+            rgba(12, 43, 33, 0.05) 100%
+        ),
+        url("../images/lodge-hero.jpg");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    padding: 70px 0;
+    color: var(--hero-text);
+    text-align: center;
+}
+.hero-eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: var(--text-gold);
+    margin-bottom: 10px;
+}
+.hero h1 {
+    font-size: clamp(44px, 5vw, 76px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+    color: var(--hero-text);
+}
+.hero p {
+    max-width: 620px;
+    margin: 0 auto 28px;
+    font-size: clamp(16px, 1.7vw, 21px);
+}
+
+@media (max-width: 650px) {
+    .hero {
+        min-height: 520px;
+        background-size: cover, auto 100%;
+        background-position: center, 65% center;
+    }
+    .hero-content {
+        padding: 60px 0;
+    }
+    .hero p {
+        max-width: 340px;
+    }
+    .hero-eyebrow {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+}
+
+/* =========================================
+   TORN PAGE LOOK WITH SVG
+========================================= */
+
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url("../images/paper-tear.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* =========================================
+   LODGE HIGHLIGHTS
+========================================= */
+
+.lodge-highlights {
+    background-color: var(--parchment);
+    padding: 40px 30px 50px;
+}
+.highlights-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.highlight-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 15px 12px;
+    min-width: 0;
+}
+.highlight-item:not(:last-child) {
+    border-right: 1px solid rgba(68, 97, 75, 0.3);
+}
+.highlight-icon {
+    flex-shrink: 0;
+    width: 62px;
+    height: 62px;
+    color: var(--forest);
+}
+.highlight-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.highlight-text h3 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+.highlight-text p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+/* responsive tablet */
+@media (max-width: 1000px) {
+    .highlights-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 20px;
+    }
+    .highlight-item:nth-child(2) {
+        border-right: none;
+    }
+}
+
+/* responsive mobile */
+@media (max-width: 600px) {
+    .highlights-container {
+        grid-template-columns: 1fr;
+    }
+    .highlight-item {
+        justify-content: flex-start;
+        padding: 15px 10px;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(68, 97, 75, 0.2);
+    }
+    .highlight-item:last-child {
+        border-bottom: none;
+    }
+    .lodge-highlights {
+        padding: 30px 25px 10px;
+    }
+}
+
+
+/* =========================================
+   ABOUT SECTION
+========================================= */
+
+.about-preview {
+    background-color: var(--parchment);
+    padding: 45px 35px 45px;
+}
+.about-preview-container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: clamp(45px, 7vw, 110px);
+}
+
+/* Featured lodge photo with an overlapping scrapbook note */
+.about-photo-feature {
+    position: relative;
+    min-width: 0;
+    margin: 10px 25px 30px 5px;
+    transform: rotate(-2deg);
+}
+/* Shared translucent scrapbook tape */
+.about-photo-feature::before,
+.adventure-polaroid::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    height: 25px;
+    background: rgba(218, 200, 171, 0.65);
+    box-shadow: 0 1px 3px rgba(36, 45, 35, 0.12);
+    transform: translateX(-50%) rotate(-7deg);
+    pointer-events: none;
+}
+
+/* Scrapbook tape on About photo */
+.about-photo-feature::before {
+    width: 75px;
+    z-index: 3;
+}
+/* Keep the handwritten note on top */
+.about-photo-feature .photo-note {
+    right: -20px;
+    bottom: -30px;
+    transform: rotate(6deg);
+    z-index: 2;
+}
+.about-photo-feature .photo-frame {
+    height: 340px;
+}
+
+/* Center Content */
+
+.about-preview-content {
+    position: relative;
+    padding: 10px 0;
+    isolation: isolate;
+}
+.about-preview-content h2,
+.adventures-intro h2 {
+    font-size: clamp(28px, 2.8vw, 42px);
+    line-height: 1.15;
+    font-weight: 600;
+}
+.text-description {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+/* photo note */
+.photo-note {
+    position: absolute;
+    padding: 18px 25px;
+    text-align: center;
+    background-color: var(--paper-note);
+    box-shadow: 0 5px 15px rgba(36, 45, 35, 0.15);
+
+    transform: rotate(-5deg);
+}
+.photo-note span {
+    display: block;
+    font-family: 'Caveat', cursive;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 0.95;
+    color: var(--forest);
+}
+.photo-note small {
+    display: block;
+    margin-top: 10px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--driftwood);
+}
+
+/* ========================================
+   ACCOMMODATIONS
+======================================== */
+
+.accommodations-torn-edge {
+    height: 100px;
+    background-image: url("../images/forest-tear.svg");
+    background-size: auto 100%;
+    position: relative;
+}
+.accommodations-torn-edge::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../images/forest-tear.svg") center / auto 100% no-repeat;
+    z-index: 2;
+    pointer-events: none;
+}
+.accommodations-forest {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background-image: url("../images/decorations/forest-line.svg");
+    background-repeat: no-repeat;
+    background-size: auto 180px;
+    background-position: center bottom;
+    pointer-events: none;
+}
+.accommodations-preview {
+    scroll-margin-top: 100px;
+    position: relative;
+    background-color: var(--forest);
+    padding: 50px 0 60px;
+    isolation: isolate;
+}
+.accommodations-intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.accommodations-intro h2 {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 12px;
+}
+.accommodations-intro p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--parchment);
+}
+.room-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    height: auto;
+    object-fit: cover;
+}
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 300px));
+    gap: 24px;
+    justify-content: center;
+    width: 90%;
+    max-width: 1272px;
+    margin: 0 auto;
+}
+.room-card {
+    background-color: var(--cream);
+    padding: 8px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 2px;
+
+    display: flex;
+    flex-direction: column;
+}
+.room-card-content {
+    padding: 14px 12px 10px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+}
+.room-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+    min-height: 32px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--driftwood);
+    margin-bottom: 8px;
+}
+.room-card-content h3 {
+    font-size: 19px;
+    line-height: 1.25;
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.room-card-content > p {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: auto;
+    margin-bottom: 12px;
+}
+.room-details-btn {
+    margin-top: 0;
+}
+
+
+/* ========================================
+   ISLAND ADVENTURES
+======================================== */
+
+.adventures-torn-edge {
+    height: 100px;
+    background-color: var(--parchment);
+    background-image: url("../images/forest-tear.svg");
+    transform: rotate(180deg);
+}
+.adventures-preview {
+    background-color: var(--parchment);
+    padding: 55px 0 60px;
+}
+.adventures-container {
+    display: grid;
+    grid-template-columns: 0.8fr 1.7fr;
+    align-items: center;
+    position: relative;
+    isolation: isolate;
+}
+.adventures-intro {
+    text-align: left;
+    margin-bottom: 0;
+    max-width: 340px;
+    position: relative;
+    isolation: isolate;
+}
+.adventures-container::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    background-image: url("../images/icons/compass.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.045;
+    z-index: -1;
+    pointer-events: none;
+}
+.adventure-polaroid {
+    background-color: var(--cream);
+    padding: 8px 8px 14px;
+    width: 100%;
+    margin: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+@media (hover: hover) {
+    .adventure-polaroid:hover {
+        transform: scale(1.06);
+        z-index: 5;
+        box-shadow: 0 14px 28px rgba(36, 45, 35, 0.22);
+    }
+}
+
+.adventure-polaroid img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.adventure-polaroid figcaption {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--forest);
+    padding-top: 8px;
+}
+
+.adventures-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    align-items: center;
+}
+.adventures-grid .adventure-polaroid {
+    position: relative;
+    z-index: 1;
+}
+
+/* Scrapbook tape on polaroids */
+.adventure-polaroid::before {
+    width: 65px;
+    z-index: 2;
+}
+
+/* Small variations between photos */
+.adventure-polaroid:nth-child(2)::before {
+    transform: translateX(-50%) rotate(6deg);
+}
+.adventure-polaroid:nth-child(3)::before {
+    transform: translateX(-50%) rotate(-4deg);
+}
+.adventure-polaroid:nth-child(4)::before {
+    transform: translateX(-50%) rotate(8deg);
+}
+
+/* Tablet: tidy 2x2 polaroids */
+@media (min-width: 651px) and (max-width: 1050px) {
+
+    .adventures-container {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+        gap: 30px;
+    }
+
+    .adventures-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* ========================================
+   BOOK YOUR ESCAPE
+======================================== */
+
+.sunset-top-tear {
+    height: 100px;
+    margin-bottom: -100px;
+    position: relative;
+    z-index: 1;
+    background-image: url("../images/sunset-top-tear.svg");
+    transform: rotate(180deg);
+}
+.booking-cta {
+    background-color: var(--forest);
+    background-image:
+        linear-gradient(
+            rgba(12, 43, 33, 0.45),
+            rgba(12, 43, 33, 0.65)
+        ),
+        url("../images/lodge-sunset.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+}
+.booking-cta-content {
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 70px 0;
+    text-align: center;
+}
+.booking-cta-content h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 20px;
+}
+.booking-cta-content p {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--cream);
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.sunset-footer-tear {
+    height: 100px;
+    margin-top: -100px;
+    position: relative;
+    background-image: url("../images/sunset-footer-tear.svg");
+    pointer-events: none;
+}
+.site-footer {
+    background-color: var(--forest);
+    color: var(--cream);
+}
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    padding: 30px 0 45px;
+}
+.footer-brand h2 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 15px;
+}
+.footer-brand h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 1px;
+    margin-top: 14px;
+    background-color: var(--driftwood);
+}
+.footer-nav h3::after,
+.footer-contact h3::after {
+    content: "";
+    display: block;
+    width: 35px;
+    height: 1px;
+    margin-top: 12px;
+    background-color: var(--driftwood);
+}
+.footer-brand p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--cream);
+    max-width: 300px;
+}
+.footer-nav h3,
+.footer-contact h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 20px;
+}
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-nav li + li {
+    margin-top: 12px;
+}
+.footer-nav a,
+.footer-contact a {
+    color: var(--cream);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.footer-nav a:hover,
+.footer-contact a:hover {
+    color: var(--driftwood);
+}
+.footer-contact p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--cream);
+    margin-bottom: 12px;
+}
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 22px 0;
+    text-align: center;
+    background-color: var(--parchment);
+}
+.footer-bottom p {
+    font-size: 12px;
+    color: var(--forest);
+    opacity: 0.7;
+    margin: 0;
+}
+
+/* responsive layout */
+@media (max-width: 1050px) {
+    .room-grid {
+        grid-template-columns: repeat(2, minmax(0, 300px));
+    }
+    .about-preview-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
+    }
+}
+@media (max-width: 650px) {
+    .room-grid {
+        grid-template-columns: minmax(0, 300px);
+    }
+    .about-preview {
+        padding: 35px 25px 35px;
+    }
+    .about-preview-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .about-photo-feature .photo-frame {
+        height: 250px;
+    }
+    .about-photo-feature .photo-note {
+        padding: 12px 16px;
+    }
+    .about-photo-feature .photo-note span {
+        font-size: 18px;
+    }
+    .accommodations-preview {
+        padding: 25px 0 35px;
+    }
+    .adventures-torn-edge {
+        height: 65px;
+    }
+    .adventures-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    .adventures-container::before {
+        width: 300px;
+        height: 300px;
+        top: 120px;
+        left: 70%;
+        transform: translate(-50%, -50%);
+    }
+    .adventures-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .adventures-preview {
+        padding: 45px 0 25px;
+    }
+    .booking-cta-content {
+        padding: 90px 0 70px;
+    }
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 35px 0;
+    }
+}
+
+/* ========================================
+   ROOM DETAILS POPUP
+======================================== */
+
+.room-modal {
+    width: min(90%, 470px);
+    max-height: 90vh;
+    margin: auto;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--parchment);
+    color: var(--forest);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+.room-modal::backdrop {
+    background-color: rgba(12, 30, 24, 0.75);
+}
+.room-modal-inner {
+    position: relative;
+}
+.room-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--cream);
+    color: var(--forest);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+.room-modal-image {
+    display: block;
+    width: calc(100% - 30px);
+    height: 300px;
+    margin: 15px 15px 0;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.room-modal-content {
+    padding: 18px 25px 24px;
+    text-align: left;
+}
+.room-modal-content h2 {
+    font-size: clamp(24px, 3vw, 30px);
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+.room-modal-type {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--driftwood);
+    margin-bottom: 20px;
+}
+.room-modal-description {
+    max-width: 480px;
+    margin: 0 0 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+.room-modal-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(68, 97, 75, 0.25);
+    border-bottom: 1px solid rgba(68, 97, 75, 0.25);
+}
+.room-modal-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--forest);
+}
+.room-feature-icon {
+    display: block;
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.room-modal-price {
+    margin: 16px 0 14px;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+.room-modal-book {
+    display: block;
+    width: fit-content;
+    min-width: 200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Mobile popup */
+@media (max-width: 600px) {
+    .room-modal {
+        width: 94%;
+    }
+    .room-modal-image {
+        height: 220px;
+    }
+    .room-modal-content {
+        padding: 25px 20px 30px;
+    }
+    .room-modal-features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Centered, fixed-maximum-width website preview */
+body { 
+    background: #d8d2c5; }
+.site-shell { 
+    width: 100%; 
+    max-width: 1200px; 
+    margin-inline: auto; 
+    background: var(--parchment); 
+    box-shadow: 0 0 45px rgba(25,60,48,.17); 
+}
+@media (max-width: 1440px) { 
+    .site-shell { box-shadow: none; 
+    } 
+}
+/* Mobile layout: centered content, editorial About section */
+@media (max-width: 650px) {
+    .about-preview-content {
+        text-align: left;
+    }
+    .about-preview-content .section-divider {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .adventures-intro {
+        text-align: center;
+        margin-inline: auto;
+        max-width: 400px;
+    }
+    .adventures-intro .section-divider {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-container {
+        text-align: center;
+        gap: 25px;
+    }
+    .footer-brand p {
+        margin-inline: auto;
+    }
+    .footer-brand h2::after,
+    .footer-nav h3::after,
+    .footer-contact h3::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-nav li + li {
+        margin-top: 9px;
+    }
+}
+
+@media (max-width: 600px) {
+    .highlight-item {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 10px;
+    }
+    .about-preview {
+        padding-bottom: 65px;
+    }
+}

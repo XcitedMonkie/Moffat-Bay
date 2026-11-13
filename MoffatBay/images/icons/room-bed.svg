@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="48"
+     height="48"
+     viewBox="0 0 48 48"
+     fill="none"
+     stroke="#193C30"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- Headboard -->
+    <path d="M7 27V15a4 4 0 0 1 4-4h26a4 4 0 0 1 4 4v12"/>
+
+    <!-- Pillows -->
+    <rect x="11" y="17" width="12" height="9" rx="3"/>
+    <rect x="25" y="17" width="12" height="9" rx="3"/>
+
+    <!-- Mattress -->
+    <rect x="5" y="27" width="38" height="11" rx="2"/>
+
+    <!-- Legs -->
+    <path d="M8 38v4M40 38v4"/>
+
+</svg>

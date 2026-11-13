@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="48"
+     height="48"
+     viewBox="0 0 48 48"
+     fill="none"
+     stroke="#193C30"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- Triangular ruler -->
+    <path d="M8 40L40 8V40H8Z"/>
+
+    <!-- Inner cutout -->
+    <path d="M27 32L32 27V32H27Z"/>
+
+    <!-- Measurement markings -->
+    <path d="M15 33l4 4"/>
+    <path d="M21 27l4 4"/>
+    <path d="M27 21l4 4"/>
+
+</svg>

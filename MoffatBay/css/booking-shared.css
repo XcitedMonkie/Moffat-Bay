@@ -1,0 +1,264 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+    background-image: radial-gradient(rgba(107, 88, 55, .045) 1px, transparent 1px);
+    background-size: 7px 7px;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--driftwood);
+    outline-offset: 3px;
+}
+
+[hidden],
+.hidden {
+    display: none !important;
+}
+
+/* Existing global navigation and button styles are intentionally NOT copied. */
+.booking-hero {
+    position: relative;
+    overflow: hidden;
+    color: var(--cream);
+    background: var(--forest);
+}
+
+.booking-hero-content {
+    /* Width and auto margins come from .content-container in style.css. */
+    padding: 49px 0 85px;
+}
+
+.booking-hero .section-eyebrow {
+    color: var(--text-gold);
+}
+
+.booking-hero h1 {
+    color: var(--cream);
+    font-size: clamp(34px, 5vw, 57px);
+    line-height: 1.12;
+    font-weight: 600;
+    margin: 5px 0 13px;
+}
+
+.booking-hero p {
+    color: #e2e9dd;
+    max-width: 540px;
+    line-height: 1.65;
+}
+
+/* Use the real paper-tear.svg supplied with the homepage. */
+.booking-hero-tear {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 66px;
+    background-image: url('../images/paper-tear.svg');
+}
+
+.booking-main {
+    /* Uses the existing .content-container width: 90%, max-width: 1000px. */
+    padding: 32px 0 135px;
+}
+
+.demo-banner {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 23px;
+}
+
+.booking-footer {
+    padding: 23px 15px;
+}
+
+.booking-footer p + p {
+    margin-top: 4px;
+}
+
+/* Reuses the site's existing .btn .btn-primary; only adds the
+   neutral outlined option needed for editing/starting over. */
+.btn-outline {
+    color: var(--forest);
+    border: 1px solid var(--forest);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    color: var(--forest);
+    background: #e9efe4;
+}
+
+.btn-quiet {
+    border: none;
+    padding: 10px 5px;
+    background: transparent;
+    color: var(--forest);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    opacity: .68;
+    cursor: progress;
+}
+
+.eyebrow,
+.detail-label {
+    color: var(--moss);
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.muted {
+    color: var(--text-secondary);
+}
+
+.small {
+    font-size: 12px;
+}
+
+.sheet {
+    background: var(--cream);
+    border: 1px solid #e0d2bb;
+    padding: 33px;
+    box-shadow: 0 15px 42px rgba(26, 44, 33, .11);
+    border-radius: 4px;
+    position: relative;
+}
+
+/* The 75px x 25px translucent tape from the style guide. */
+.sheet::before,
+.confirmation-card::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 43%;
+    width: 75px;
+    height: 25px;
+    background: rgba(218, 200, 171, .65);
+    box-shadow: 0 1px 3px rgba(36, 45, 35, .12);
+    transform: rotate(-4deg);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.error {
+    padding: 13px 15px;
+    margin: 15px 0;
+    border: 1px solid #e5b9ab;
+    border-radius: 4px;
+    background: #fff1e9;
+    color: #7f3733;
+    font-size: 13px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field label,
+.lookup-form label {
+    color: var(--forest);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea,
+.lookup-form input {
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 12px;
+    color: var(--forest);
+    background: #fffdf6;
+    border: 1px solid #d5c9b7;
+    border-radius: 4px;
+}
+
+.field textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.full-width {
+    width: 100%;
+}
+
+@media (max-width: 650px) {
+    .booking-main {
+        padding-top: 25px;
+    }
+
+    .booking-hero-content {
+        padding: 39px 0 65px;
+    }
+
+    .booking-hero-tear {
+        height: 45px;
+    }
+
+    .sheet {
+        padding: 26px 19px;
+    }
+
+    .sheet::before {
+        left: 38%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Reservation-only utility link; navigation itself comes from global CSS. */
+.booking-utility-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px 24px;
+    flex-wrap: wrap;
+    margin-bottom: 23px;
+}
+.booking-utility-row .demo-banner {
+    margin-bottom: 0;
+}
+.booking-utility-link {
+    color: var(--forest);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.booking-utility-link:hover {
+    color: var(--moss);
+}
