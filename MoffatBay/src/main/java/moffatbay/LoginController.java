@@ -1,4 +1,3 @@
-
 package moffatbay;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -57,6 +56,7 @@ public class LoginController implements HttpHandler {
         try {
             // Look up the user's stored password hash
             String storedHash = userDAO.findPasswordHashByEmail(email);
+            UserDAO.UserLogin user = userDAO.findUserByEmail(email);
 
             boolean valid = false;
 
@@ -69,7 +69,17 @@ public class LoginController implements HttpHandler {
                 }
             }
 
+            if (user != null) {
+                try {
+                    valid = BCrypt.checkpw(password, user.passwordHash());
+                } catch (IllegalArgumentException e) {
+                    // The stored hash is not in a supported format
+                    valid = false;
+                }
+            }
+
             if (valid) {
+                SessionManager.createSession(exchange, user.userId());
                 sendResponse(exchange, 200, "Login successful");
             } else {
                 sendResponse(exchange, 401, "Invalid email or password");
@@ -89,6 +99,10 @@ public class LoginController implements HttpHandler {
 
         exchange.getResponseHeaders().set(
             "Content-Type", "text/plain; charset=UTF-8"
+        );
+
+        exchange.getResponseHeaders().set(
+            "Cache-Control", "no-store"
         );
 
         exchange.sendResponseHeaders(status, response.length);

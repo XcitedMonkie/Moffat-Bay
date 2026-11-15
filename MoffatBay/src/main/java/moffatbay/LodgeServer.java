@@ -8,9 +8,13 @@ import java.util.Set;
 public final class LodgeServer {
     public static void main(String[] args) throws IOException {
         Path root = Path.of(".").toRealPath();
+        System.out.println("Website root: " + root);
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 7070), 0);
         server.createContext("/api/room-types", new RoomTypeController());
+        server.createContext("/api/guests/register", new GuestController());
         server.createContext("/api/login", new LoginController());
+        // Allow the website to check the customer's login session.
+        server.createContext("/api/session", new SessionController());
         server.createContext("/", e -> serve(e, root));
         server.start();
         System.out.println("Moffat Bay Lodge: http://localhost:7070/");
@@ -20,7 +24,7 @@ public final class LodgeServer {
         if (path.equals("/")) path = "/index.html";
             Path file = root.resolve(path.substring(1)).normalize();
             String relative = root.relativize(file).toString().replace('\\', '/');
-            boolean allowed = Set.of("index.html", "about.html", "attractions.html", "contact.html", "login.html", "reservation.html").contains(relative)
+            boolean allowed = Set.of("index.html", "about.html", "attractions.html", "contact.html", "login.html", "register.html", "reservation.html").contains(relative)
                 || relative.startsWith("css/") || relative.startsWith("js/") || relative.startsWith("images/") || relative.startsWith("reservation-test/");
         if (!e.getRequestMethod().equals("GET")) { e.sendResponseHeaders(405, -1); e.close(); return; }
         if (!file.startsWith(root) || !allowed || !Files.isRegularFile(file) || !file.toRealPath().startsWith(root)) {

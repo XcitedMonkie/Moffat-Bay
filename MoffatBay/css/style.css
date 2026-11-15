@@ -1176,3 +1176,88 @@ body {
         padding-bottom: 65px;
     }
 }
+
+/* User registration style */
+
+/* Registration Page */
+
+.registration {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 35px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.registration h1 {
+    text-align: center;
+    color: #234b3d;
+    margin-bottom: 10px;
+}
+
+.registration > p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#registrationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#registrationForm label {
+    font-weight: bold;
+    color: #234b3d;
+    margin-top: 8px;
+}
+
+#registrationForm input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#registrationForm input:focus {
+    outline: 2px solid #39775e;
+    border-color: #39775e;
+}
+
+#registrationForm button {
+    margin-top: 20px;
+    padding: 14px;
+    background-color: #234b3d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#registrationForm button:hover {
+    background-color: #39775e;
+}
+
+#regStatus {
+    margin-top: 10px;
+}
+
+#regStatus.is-error {
+    color: #b42318;
+}
+
+#regStatus.is-success {
+    color: #17633e;
+}
+
+@media (max-width: 600px) {
+    .registration {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+}

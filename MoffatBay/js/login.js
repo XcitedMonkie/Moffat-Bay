@@ -1,4 +1,3 @@
-
 // Get the login form and message area
 const loginForm = document.getElementById("loginForm");
 const loginMessage = document.getElementById("loginMessage");
@@ -29,7 +28,9 @@ loginForm.addEventListener("submit", async function(event) {
         });
 
         if (response.ok) {
-            loginMessage.textContent = "Login successful!";
+            //loginMessage.textContent = "Login successful!";
+            // Send the customer to the landing page after login
+            window.location.href = "/index.html";
         } else if (response.status === 401) {
             loginMessage.textContent = "Invalid email or password.";
         } else {

@@ -10,6 +10,7 @@
     'use strict';
 
     const STORAGE_KEY = 'mbl-demo-reservations-v4';
+    const USER_STORAGE_KEY = 'mbl-current-user';
 
     // Rates are illustrative and are NOT linked to an availability system.
     const rooms = {
@@ -132,6 +133,44 @@
         }
     }
 
+    
+    /**
+     * Saves the registered user's profile in sessionStorage.
+     * This is for form autofill, not authentication.
+     */
+    function setCurrentUser(user) {
+        try {
+            sessionStorage.setItem(
+                USER_STORAGE_KEY,
+                JSON.stringify(user)
+            );
+            return true;
+        } catch (error) {
+            console.error('Unable to save user profile:', error);
+            return false;
+        }
+    }
+
+    /**
+     * Retrieves the registered user's profile.
+     */
+    function getCurrentUser() {
+        try {
+            const storedUser = sessionStorage.getItem(USER_STORAGE_KEY);
+
+            if (!storedUser) {
+                return null;
+            }
+
+            return JSON.parse(storedUser);
+
+        } catch (error) {
+            console.error('Unable to retrieve user profile:', error);
+            return null;
+        }
+    }
+
+
     function createConfirmationNumber() {
         const bytes = new Uint8Array(5);
         if (window.crypto?.getRandomValues) {
@@ -171,7 +210,7 @@
             nav.classList.toggle('is-open', !isOpen);
         });
     }
-
+    
     window.MBL = Object.freeze({
         $,
         rooms,
@@ -184,9 +223,12 @@
         datesText,
         getReservations,
         saveReservation,
+        setCurrentUser,
+        getCurrentUser,
         createConfirmationNumber,
         sampleReservation
     });
+
 
     initializeMenu();
 })();

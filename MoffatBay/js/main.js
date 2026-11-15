@@ -157,3 +157,39 @@ roomModal.addEventListener("click", (event) => {
         roomModal.close();
     }
 });
+
+
+/* DF - Added this part to check if a user is logged in */
+
+// Check whether the customer is logged in.
+async function checkLoginStatus() {
+
+    const loginLink = document.getElementById("loginLink");
+
+    if (!loginLink) return;
+
+    try {
+        // Ask the Java server for the current session.
+        const response = await fetch("/api/session", {
+            cache: "no-store"
+        });
+
+        if (!response.ok) return;
+
+        const session = await response.json();
+
+        if (session.loggedIn && session.firstName) {
+            // Replace Login with the customer's first name.
+            loginLink.textContent = session.firstName;
+
+            // No account page exists yet, so don't navigate anywhere.
+            loginLink.removeAttribute("href");
+        }
+
+    } catch (error) {
+        console.error("Unable to check login status:", error);
+    }
+}
+
+// Check the session when the landing page loads.
+checkLoginStatus();

@@ -12,6 +12,14 @@ public final class DatabaseConnection {
         //String password = System.getenv("MBL_DB_PASSWORD");
         String password = "pass";
         if (password == null) throw new SQLException("Set MBL_DB_PASSWORD before starting the server.");
+
+        try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("MySQL JDBC driver not found", e);
+        }
+
         return DriverManager.getConnection(url, user, password);
+        //return DriverManager.getConnection(url, user, password);
     }
 }
