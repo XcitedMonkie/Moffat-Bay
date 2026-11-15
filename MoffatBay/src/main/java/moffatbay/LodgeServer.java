@@ -10,6 +10,7 @@ public final class LodgeServer {
         Path root = Path.of(".").toRealPath();
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 7070), 0);
         server.createContext("/api/room-types", new RoomTypeController());
+        server.createContext("/api/login", new LoginController());
         server.createContext("/", e -> serve(e, root));
         server.start();
         System.out.println("Moffat Bay Lodge: http://localhost:7070/");
