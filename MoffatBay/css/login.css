@@ -1,0 +1,79 @@
+
+/* Moffat Bay Lodge Login Page */
+
+/* Page layout */
+body {
+    background-color: var(--parchment);
+    color: var(--forest);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+/* Welcome heading */
+h1 {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Member login heading */
+h2 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+/* Paragraph spacing */
+p {
+    margin-bottom: 20px;
+}
+
+/* Login form */
+#loginForm {
+    background-color: var(--cream);
+    max-width: 420px;
+    margin: 30px auto;
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-photo);
+    text-align: left;
+}
+
+/* Email and password labels */
+#loginForm label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Email and password fields */
+#loginForm input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--moss);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Login button */
+#loginForm button {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--forest);
+    color: var(--cream);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+#loginForm button:hover {
+    background-color: var(--moss);
+}
+
+/* Login message */
+#loginMessage {
+    margin-top: 15px;
+    font-weight: 600;
+}

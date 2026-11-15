@@ -1,0 +1,62 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Moffat Bay Lodge</title>
+
+    <!-- Shared website styling -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Login page styling -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <h1>Welcome to Moffat Bay Lodge</h1>
+
+    <h2>Member Login</h2>
+
+    <p>Please log in to access your account.</p>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+
+        <label for="email">Email Address:</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required
+        >
+
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input
+            type="password"
+            id="password"
+            name="password"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <!-- Login messages will appear here -->
+    <p id="loginMessage" role="status" aria-live="polite"></p>
+
+    <p>Don't have an account? Register here.</p>
+
+    <script src="js/login.js"></script>
+
+</body>
+</html>
+
