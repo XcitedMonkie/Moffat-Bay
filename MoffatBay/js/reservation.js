@@ -4,25 +4,17 @@
  */
 (() => {
     'use strict';
-
-    const {
-        $, rooms, currency, escapeHtml, daysFromToday, nextDay,
-        formatDate, numberOfNights, datesText,
-        saveReservation, createConfirmationNumber
-    } = window.MBL;
-
+    const { $, rooms, currency, escapeHtml, daysFromToday, nextDay, formatDate, numberOfNights, datesText } = window.MBL;
     const dialog = $('#reviewDialog');
     const form = $('#bookingForm');
     let pendingBooking = null;
     let isSubmitting = false;
-
     function readForm() {
         const roomKey = $('#room').value;
         const room = rooms[roomKey];
         const checkin = $('#checkin').value;
         const checkout = $('#checkout').value;
         const nights = numberOfNights(checkin, checkout);
-
         return {
             roomKey,
             checkin,
@@ -36,12 +28,12 @@
             total: room.price * nights
         };
     }
-
     function validate(booking) {
         const room = rooms[booking.roomKey];
-
-        if (!booking.first) return 'Please enter your first name.';
-        if (!booking.last) return 'Please enter your last name.';
+        if (!booking.first)
+            return 'Please enter your first name.';
+        if (!booking.last)
+            return 'Please enter your last name.';
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(booking.email)) {
             return 'Please enter a valid email address.';
         }
@@ -59,35 +51,32 @@
         }
         return '';
     }
-
     function showError(message) {
         const error = $('#formError');
         error.textContent = message;
         error.classList.remove('hidden');
         error.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
-
     function setProgress(stage) {
         const activeStep = stage === 'booking' ? 1 : stage === 'review' ? 2 : 3;
-
         ['step1', 'step2', 'step3'].forEach((id, i) => {
             const element = $(`#${id}`);
             element.classList.toggle('on', i + 1 === activeStep);
             element.classList.toggle('done', i + 1 < activeStep);
-            if (i + 1 === activeStep) element.setAttribute('aria-current', 'step');
-            else element.removeAttribute('aria-current');
+            if (i + 1 === activeStep)
+                element.setAttribute('aria-current', 'step');
+            else
+                element.removeAttribute('aria-current');
         });
     }
-
     // Crossfade between two images rather than flashing the sidebar blank.
     const photoLayers = [$('#asidePhotoA'), $('#asidePhotoB')];
     let visibleLayer = 1;
     let currentRoomPhoto = null;
-
     function updateRoomPhoto(roomKey) {
-        if (roomKey === currentRoomPhoto) return;
+        if (roomKey === currentRoomPhoto)
+            return;
         currentRoomPhoto = roomKey;
-
         const nextLayerIndex = 1 - visibleLayer;
         const nextPhoto = photoLayers[nextLayerIndex];
         nextPhoto.src = rooms[roomKey].photo;
@@ -95,14 +84,11 @@
         nextPhoto.classList.add('is-visible');
         photoLayers[visibleLayer].classList.remove('is-visible');
         visibleLayer = nextLayerIndex;
-
         $('#asidePhotoCaption').textContent = rooms[roomKey].title;
     }
-
     function updateSidebar() {
         const booking = readForm();
         const room = rooms[booking.roomKey];
-
         $('#capacityHelp').textContent =
             `Sleeps up to ${room.maxGuests} guests · Pet-friendly`;
         $('#asideRoom').textContent = room.title;
@@ -115,27 +101,20 @@
         $('#asideRate').textContent = `${currency(room.price)} / night`;
         $('#asideTotal').textContent = booking.nights > 0
             ? currency(booking.total) : '—';
-
         updateRoomPhoto(booking.roomKey);
     }
-
     function updateGuestLimit() {
         const guestSelect = $('#guests');
         const room = rooms[$('#room').value];
         const previousCount = Number(guestSelect.value) || 2;
-
         guestSelect.replaceChildren();
         for (let guests = 1; guests <= room.maxGuests; guests++) {
-            const option = new Option(
-                `${guests} ${guests === 1 ? 'guest' : 'guests'}`,
-                String(guests)
-            );
+            const option = new Option(`${guests} ${guests === 1 ? 'guest' : 'guests'}`, String(guests));
             guestSelect.add(option);
         }
         guestSelect.value = String(Math.min(previousCount, room.maxGuests));
         updateSidebar();
     }
-
     function detail(label, value) {
         return `
             <div>
@@ -144,11 +123,9 @@
             </div>
         `;
     }
-
     function reviewMarkup(booking) {
         const room = rooms[booking.roomKey];
         const guestText = `${booking.guests} ${booking.guests === 1 ? 'guest' : 'guests'}`;
-
         return `
             <span class="eyebrow">Step two · review your stay</span>
             <h2 id="dialogTitle" tabindex="-1">Before you unpack…</h2>
@@ -203,17 +180,14 @@
             </p>
         `;
     }
-
     function showReview(event) {
         event.preventDefault();
-
         const booking = readForm();
         const problem = validate(booking);
         if (problem) {
             showError(problem);
             return;
         }
-
         $('#formError').classList.add('hidden');
         pendingBooking = booking;
         $('#reviewModalCard').innerHTML = reviewMarkup(booking);
@@ -222,11 +196,10 @@
         dialog.scrollTop = 0;
         $('#dialogTitle').focus({ preventScroll: true });
     }
-
     function closeReview() {
-        if (!isSubmitting && dialog.open) dialog.close();
+        if (!isSubmitting && dialog.open)
+            dialog.close();
     }
-
     // Change banner CONTENT only. Its original classes, colors, fonts, and
     // torn-paper decoration remain controlled by the shared CSS.
     function updateBookingBanner(stage) {
@@ -240,22 +213,18 @@
         $('#bannerDescription').textContent = confirmed
             ? "Your getaway to Moffat Bay is officially on the calendar. We can't wait to welcome you!"
             : 'Choose your dates, review the little details, and find your place among the trees.';
-
         // Remove any state-specific inline styling before changing stages.
         for (const element of [$('#bannerEyebrow'), $('#pageTitle'), $('#bannerDescription')]) {
             element.removeAttribute('style');
         }
     }
-
     function showConfirmation(booking) {
         const room = rooms[booking.roomKey];
-
         $('#confirmationReference').textContent = booking.id;
         $('#confirmedGuest').textContent = `${booking.first} ${booking.last}`;
         $('#confirmedRoom').textContent = room.title;
         $('#confirmedStay').textContent = datesText(booking);
         $('#confirmedTotal').textContent = currency(booking.total);
-
         $('#bookingView').classList.add('hidden');
         $('#confirmationView').classList.remove('hidden');
         document.body.classList.add('confirmed-page');
@@ -265,19 +234,21 @@
         window.scrollTo({ top: 0, behavior: 'instant' });
         $('#confirmationTitle').focus({ preventScroll: true });
     }
-
-    function confirmReservation() {
-        if (!pendingBooking || isSubmitting || !dialog.open) return;
-
-        // Never silently overwrite changes to the booking form.
-        const currentBooking = readForm();
-        const problem = validate(currentBooking);
-        if (problem) {
+    async function confirmReservation() {
+        if (!pendingBooking || isSubmitting || !dialog.open)
+            return;
+        const current = readForm();
+        const issue = validate(current);
+        if (issue) {
             closeReview();
-            showError(problem);
+            showError(issue);
             return;
         }
-
+        if (JSON.stringify(current) !== JSON.stringify(pendingBooking)) {
+            closeReview();
+            showError('Reservation details changed. Please review again.');
+            return;
+        }
         isSubmitting = true;
         $('#confirmBooking').disabled = true;
         $('#editDetails').disabled = true;
@@ -285,26 +256,48 @@
         $('#confirmBooking').textContent = 'Confirming…';
         $('#dialogProcessing').classList.remove('hidden');
         dialog.setAttribute('aria-busy', 'true');
-
-        // Simulate the server save. In production, await an authenticated
-        // POST to a Java/Javalin endpoint; confirm ONLY after MySQL commits.
-        window.setTimeout(() => {
+        try {
+            const result = await fetch('/api/reservations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify({
+                    roomId: pendingBooking.roomKey,
+                    guests: pendingBooking.guests,
+                    checkIn: pendingBooking.checkin,
+                    checkOut: pendingBooking.checkout
+                })
+            });
+            const data = await result.json();
+            if (!result.ok)
+                throw new Error(data.error || 'Could not confirm your reservation.');
+            const r = data.reservation;
             const confirmation = {
                 ...pendingBooking,
-                id: createConfirmationNumber(),
-                status: 'Confirmed'
+                id: r.confirmationCode,
+                total: Number(r.totalPrice),
+                status: r.status
             };
-
-            saveReservation(confirmation);
-            isSubmitting = false;
-            dialog.removeAttribute('aria-busy');
             dialog.close();
             showConfirmation(confirmation);
-        }, 850);
+        }
+        catch (err) {
+            dialog.close();
+            showError(err.message || 'Reservation could not be saved.');
+        }
+        finally {
+            isSubmitting = false;
+            dialog.removeAttribute('aria-busy');
+            $('#confirmBooking').disabled = false;
+            $('#editDetails').disabled = false;
+            $('#closeDialog').disabled = false;
+            $('#confirmBooking').textContent = 'Confirm Reservation';
+            $('#dialogProcessing').classList.add('hidden');
+        }
     }
-
     function resetReservation() {
-        if (isSubmitting) return;
+        if (isSubmitting)
+            return;
         closeReview();
         form.reset();
         $('#checkin').value = daysFromToday(14);
@@ -322,7 +315,6 @@
         setProgress('booking');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
     function updateCheckoutMinimum() {
         const checkin = $('#checkin').value;
         $('#checkout').min = checkin ? nextDay(checkin) : daysFromToday(1);
@@ -331,53 +323,49 @@
         }
         updateSidebar();
     }
-
     function initializePage() {
         const selectedRoom = new URLSearchParams(window.location.search).get("room");
-        if (selectedRoom && Object.hasOwn(rooms, selectedRoom)) $("#room").value = selectedRoom;
+        if (selectedRoom && Object.hasOwn(rooms, selectedRoom))
+            $("#room").value = selectedRoom;
         $('#checkin').min = daysFromToday(0);
         $('#checkin').value = daysFromToday(14);
         $('#checkout').min = nextDay($('#checkin').value);
         $('#checkout').value = daysFromToday(17);
-
         updateGuestLimit();
         setProgress('booking');
         $('#room').addEventListener('change', updateGuestLimit);
         $('#checkin').addEventListener('change', updateCheckoutMinimum);
-        ['checkout', 'guests', 'first', 'last', 'email'].forEach(id =>
-            $(`#${id}`).addEventListener('input', updateSidebar)
-        );
+        ['checkout', 'guests', 'first', 'last', 'email'].forEach(id => $(`#${id}`).addEventListener('input', updateSidebar));
         form.addEventListener('submit', showReview);
         $('#closeDialog').addEventListener('click', closeReview);
         $('#confirmationRestart').addEventListener('click', resetReservation);
-
         $('#confirmationLookup').addEventListener('click', () => {
             const id = $('#confirmationReference').textContent;
             window.location.href = `lookup.html?reference=${encodeURIComponent(id)}`;
         });
-
         // Click outside the card to close. Esc never closes while saving.
         dialog.addEventListener('click', event => {
-            if (event.target === dialog) closeReview();
+            if (event.target === dialog)
+                closeReview();
         });
         dialog.addEventListener('cancel', event => {
-            if (isSubmitting) event.preventDefault();
+            if (isSubmitting)
+                event.preventDefault();
         });
         dialog.addEventListener('close', () => {
             if (!document.body.classList.contains('confirmed-page')) {
                 setProgress('booking');
             }
         });
-
         $('#reviewModalCard').addEventListener('click', event => {
             if (event.target.closest('#editDetails')) {
                 closeReview();
                 $('#checkin').focus({ preventScroll: true });
                 $('#formSheet').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            if (event.target.closest('#confirmBooking')) confirmReservation();
+            if (event.target.closest('#confirmBooking'))
+                confirmReservation();
         });
     }
-
     initializePage();
 })();
