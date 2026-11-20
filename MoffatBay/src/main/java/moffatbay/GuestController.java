@@ -111,7 +111,7 @@ public class GuestController implements HttpHandler {
                 saved.getEmail(),
                 saved.getPhone()
             );
-
+            SessionManager.createSession(exchange, saved.getGuestId());
             send(exchange, 201, gson.toJson(response));
 
         } catch (JsonParseException | IllegalStateException e) {
@@ -163,58 +163,4 @@ public class GuestController implements HttpHandler {
         }
     }
 }
-
-
-// package com.moffatbay.controller;
-
-// import com.moffatbay.dto.GuestRegistrationRequest;
-// import com.moffatbay.dto.GuestResponse;
-// import com.moffatbay.model.Guest;
-// import com.moffatbay.repository.GuestRepository;
-// import jakarta.validation.Valid;
-// import org.springframework.http.HttpStatus;
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-// import org.springframework.web.bind.annotation.*;
-
-// import java.util.Map;
-
-// @RestController
-// @RequestMapping("/api/guests")
-// public class GuestController {
-
-//     private final GuestRepository guestRepository;
-//     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-//     public GuestController(GuestRepository guestRepository) {
-//         this.guestRepository = guestRepository;
-//     }
-
-//     @PostMapping("/register")
-//     public ResponseEntity<?> registerGuest(@Valid @RequestBody GuestRegistrationRequest req) {
-//         if (guestRepository.existsByEmailIgnoreCase(req.email().trim())) {
-//             return ResponseEntity
-//                 .status(HttpStatus.CONFLICT)
-//                 .body(Map.of("error", "An account with this email already exists."));
-//         }
-
-//         Guest guest = new Guest();
-//         guest.setFirstName(req.first().trim());
-//         guest.setLastName(req.last().trim());
-//         guest.setEmail(req.email().trim().toLowerCase());
-//         guest.setPhone(req.phone().trim());
-//         guest.setPasswordHash(passwordEncoder.encode(req.password()));
-
-//         Guest saved = guestRepository.save(guest);
-
-//         GuestResponse response = new GuestResponse(
-//             saved.getGuestId(),
-//             saved.getFirstName(),
-//             saved.getLastName(),
-//             saved.getEmail(),
-//             saved.getPhone()
-//         );
-
-//         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-//     }
 // }
