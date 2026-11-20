@@ -1,0 +1,202 @@
+.auth-body {
+    min-height: 100vh;
+    background: #ddd9cd;
+}
+.auth-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.auth-main {
+    position: relative;
+    isolation: isolate;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 58px clamp(28px, 5.5vw, 80px) 78px;
+    background-image: linear-gradient(90deg, rgba(10, 32, 26, .76) 0%, rgba(15, 42, 34, .58) 32%, rgba(17, 46, 37, .17) 65%, rgba(17, 46, 37, .08) 100%),
+    url('../images/lodge-hero.jpg');
+    background-position: center, center 55%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.auth-layout {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(32px, 5vw, 74px);
+}
+.auth-story {
+    color: var(--cream);
+    padding: 10px 0;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .23);
+}
+.auth-story .section-eyebrow {
+    color: #e9c28b;
+}
+.auth-story h2 {
+    margin: 14px 0 18px;
+    font-size: clamp(37px, 4.2vw, 56px);
+    line-height: 1.1;
+    color: var(--cream);
+}
+.auth-story p {
+    max-width: 390px;
+    font-size: 16px;
+    line-height: 1.65;
+    color: #fff9ec;
+}
+.auth-card {
+    background: rgba(255, 249, 237, .985);
+    border: 1px solid #e1d4bc;
+    padding: clamp(27px, 3.3vw, 40px);
+    box-shadow: 0 18px 42px rgba(12, 29, 23, .32);
+}
+.auth-card h1 {
+    font-size: clamp(29px, 3vw, 36px);
+    line-height: 1.2;
+    margin: 0 0 8px;
+}
+.auth-intro {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+.auth-card .section-divider {
+    margin: 17px 0 23px;
+}
+.auth-card form {
+    display: grid;
+    gap: 15px;
+}
+.auth-card #registrationForm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.auth-card #registrationForm .form-group:nth-child(3),
+.auth-card #registrationForm .form-group:nth-child(4),
+.auth-card #registrationForm > button {
+    grid-column: 1 / -1;
+}
+.auth-card .form-group {
+    min-width: 0;
+}
+.auth-card label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--forest);
+}
+.auth-card input {
+    display: block;
+    width: 100%;
+    height: 43px;
+    padding: 9px 12px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--forest);
+    background: #fffcf6;
+    border: 1px solid #c4b9a5;
+    border-radius: 4px;
+}
+.auth-card input:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 2px;
+}
+.auth-card .btn {
+    width: 100%;
+    margin-top: 7px;
+}
+.auth-switch {
+    margin-top: 19px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+.auth-switch a, .status-box a {
+    color: var(--forest);
+    text-decoration: underline;
+    font-weight: 700;
+}
+.status-box:empty, #loginMessage:empty {
+    display: none;
+}
+.status-box, #loginMessage {
+    font-size: 14px;
+    margin: 12px 0;
+    padding: 10px 12px;
+    border: 1px solid #b8ad97;
+    background: var(--cream);
+}
+.status-box.is-error {
+    color: #922d25;
+    border-color: #c88c80;
+}
+.status-box.is-success {
+    color: var(--forest);
+    border-color: var(--moss);
+}
+.auth-footer {
+    padding: 24px;
+    background: var(--parchment);
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+@media (max-width: 850px) {
+    .auth-main {
+        padding: 44px 26px 64px;
+    }
+    .auth-layout {
+        max-width: 520px;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .auth-story {
+        padding: 0;
+    }
+    .auth-story h2 {
+        font-size: 38px;
+    }
+    .auth-card {
+        padding: 30px;
+    }
+    .auth-main {
+        background-image: linear-gradient(90deg, rgba(10,32,26,.73),rgba(10,32,26,.38)),url('../images/lodge-hero.jpg');
+    }
+}
+@media (max-width: 480px) {
+    .auth-main {
+        padding: 30px 17px 52px;
+    }
+    .auth-card {
+        padding: 24px 20px;
+    }
+    .auth-card #registrationForm {
+        grid-template-columns: 1fr;
+    }
+    .auth-card h1 {
+        font-size: 29px;
+    }
+    .auth-story h2 {
+        font-size: 34px;
+    }
+}
+.booking-auth-notice {
+    margin: 16px 0 18px;
+    padding: 14px 16px;
+    border-left: 3px solid #b99b66;
+    background: #f2e8d5;
+    color: #193c30;
+    line-height: 1.5;
+}
+.booking-auth-notice strong,.booking-auth-notice span {
+    display: block;
+}
+.booking-auth-notice[hidden] {
+    display: none;
+}
