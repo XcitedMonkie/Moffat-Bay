@@ -1,19 +1,19 @@
 // Get the login form and message area
 const loginForm = document.getElementById("loginForm");
 const loginMessage = document.getElementById("loginMessage");
-
+const bookingRedirect = window.MBLBookingRedirect;
+if (bookingRedirect?.booking) {
+    document.getElementById('bookingNotice').hidden = false;
+    document.querySelector('.auth-switch a[href="register.html"]').href = bookingRedirect.registerUrl;
+}
 // Run this code when someone clicks Login
-loginForm.addEventListener("submit", async function(event) {
-
+loginForm.addEventListener("submit", async function (event) {
     // Prevent the page from refreshing
     event.preventDefault();
-
     // Get the email and password entered
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-
     loginMessage.textContent = "Checking your login...";
-
     try {
         // Send login information to the Java server
         const response = await fetch("/api/login", {
@@ -26,18 +26,18 @@ loginForm.addEventListener("submit", async function(event) {
                 password: password
             })
         });
-
         if (response.ok) {
-            //loginMessage.textContent = "Login successful!";
-            // Send the customer to the landing page after login
-            window.location.href = "/index.html";
-        } else if (response.status === 401) {
+            // Return guests to their reservation or the homepage after login.
+            window.location.href = bookingRedirect?.returning ? bookingRedirect.next : "/index.html";
+        }
+        else if (response.status === 401) {
             loginMessage.textContent = "Invalid email or password.";
-        } else {
+        }
+        else {
             loginMessage.textContent = "Unable to log in. Please try again.";
         }
-
-    } catch (error) {
+    }
+    catch (error) {
         loginMessage.textContent = "Could not connect to the server.";
     }
 });
