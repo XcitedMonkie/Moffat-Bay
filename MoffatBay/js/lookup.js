@@ -1,78 +1,54 @@
-/** Lookup runs only on lookup.html. The page does not book or modify stays. */
+/** Public lookup: exact confirmation code and matching booking email. */
 (() => {
     'use strict';
-
-    const {
-        $, rooms, currency, escapeHtml, datesText,
-        getReservations, sampleReservation
-    } = window.MBL;
-
-    function findReservation(event) {
-        event.preventDefault();
-
-        const reference = $('#lookupNumber').value.trim().toUpperCase();
-        const email = $('#lookupEmail').value.trim().toLowerCase();
-        const results = [...getReservations(), sampleReservation()];
-
-        $('#lookupError').classList.add('hidden');
-        $('#lookupResult').classList.add('hidden');
-
-        if (!reference || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            showError('Please enter your confirmation number and a valid email address.');
-            return;
-        }
-
-        const booking = results.find(item =>
-            item.id.toUpperCase() === reference && item.email.toLowerCase() === email
-        );
-
-        if (!booking) {
-            showError('No matching reservation was found. Check your details.');
-            return;
-        }
-
-        // Escape guest-provided text before constructing the result panel.
-        $('#lookupResult').innerHTML = `
-            <span class="lookup-status">✓ ${escapeHtml(booking.status)}</span>
-            <h3>Found your island getaway!</h3>
-            <p><strong>Reference:</strong> ${escapeHtml(booking.id)}</p>
-            <p><strong>Guest:</strong> ${escapeHtml(`${booking.first} ${booking.last}`)}</p>
-            <p><strong>Room:</strong> ${escapeHtml(rooms[booking.roomKey].title)}</p>
-            <p><strong>Dates:</strong> ${escapeHtml(datesText(booking))}</p>
-            <p><strong>Guests:</strong> ${Number(booking.guests)}</p>
-            <p><strong>Subtotal:</strong> ${currency(booking.total)}</p>
-        `;
+    const { $, escapeHtml, currency, formatDate, rooms } = window.MBL;
+    function display(r) {
+        const reference = r.confirmationCode || r.id;
+        const name = r.roomName || rooms[r.roomKey]?.title || 'Moffat Bay Lodge room';
+        const size = r.roomSize || rooms[r.roomKey]?.size || 'See room details';
+        const checkIn = r.checkIn || r.checkin, checkOut = r.checkOut || r.checkout;
+        $('#lookupResult').innerHTML = `<span class="lookup-status">${escapeHtml(r.status || 'Confirmed')}</span>
+      <h3>${escapeHtml(name)}</h3><p><strong>Confirmation:</strong> ${escapeHtml(reference)}</p>
+      <div class="lookup-detail-grid"><p><strong>Room size</strong><span>${escapeHtml(size)}</span></p>
+      <p><strong>Guests</strong><span>${Number(r.guests)}</span></p>
+      <p><strong>Check-in</strong><span>${escapeHtml(formatDate(checkIn))}</span></p>
+      <p><strong>Check-out</strong><span>${escapeHtml(formatDate(checkOut))}</span></p></div>
+      <p><strong>Total:</strong> ${currency(Number(r.totalPrice ?? r.total))}</p>`;
         $('#lookupResult').classList.remove('hidden');
     }
-
-    function showError(message) {
-        $('#lookupError').textContent = message;
-        $('#lookupError').classList.remove('hidden');
+    function error(text) { $('#lookupError').textContent = text; $('#lookupError').classList.remove('hidden'); $('#lookupResult').classList.add('hidden'); }
+    async function submit(ev) {
+        ev.preventDefault();
+        $('#lookupError').classList.add('hidden');
         $('#lookupResult').classList.add('hidden');
+        const reference = $('#lookupNumber').value.trim().toUpperCase();
+        const email = $('#lookupEmail').value.trim().toLowerCase();
+        if (!reference || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+            return error('Enter your confirmation number and booking email address.');
+        const button = $('#lookupForm button[type="submit"]');
+        button.disabled = true;
+        button.textContent = 'Searching…';
+        try {
+            const res = await fetch('/api/reservations/lookup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ reference, email })
+            });
+            const json = await res.json();
+            if (!res.ok)
+                throw new Error(json.error || 'Reservation not found');
+            display(json.reservation);
+        }
+        catch (err) {
+            error(err.message || 'Unable to complete lookup.');
+        }
+        finally {
+            button.disabled = false;
+            button.textContent = 'Find reservation →';
+        }
     }
-
-    function fillSample() {
-        const sample = sampleReservation();
-        $('#lookupNumber').value = sample.id;
-        $('#lookupEmail').value = sample.email;
-        $('#lookupNumber').focus();
-    }
-
-    function initializePage() {
-        $('#lookupForm').addEventListener('submit', findReservation);
-        $('#fillLookup').addEventListener('click', fillSample);
-
-        // Coming from the confirmation screen: prefill ONLY the reference from
-        // the URL. Email is taken from tab-scoped demo storage when available.
-        const reference = new URLSearchParams(location.search).get('reference');
-        if (!reference) return;
-
-        $('#lookupNumber').value = reference.toUpperCase();
-        const saved = getReservations().find(item =>
-            item.id.toUpperCase() === reference.toUpperCase()
-        );
-        if (saved) $('#lookupEmail').value = saved.email;
-    }
-
-    initializePage();
+    $('#lookupForm').addEventListener('submit', submit);
+    const q = new URLSearchParams(location.search);
+    if (q.has('reference'))
+        $('#lookupNumber').value = q.get('reference').slice(0, 50);
 })();
