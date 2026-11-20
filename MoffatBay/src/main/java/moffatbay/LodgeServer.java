@@ -15,6 +15,8 @@ public final class LodgeServer {
         server.createContext("/api/login", new LoginController());
         // Allow the website to check the customer's login session.
         server.createContext("/api/session", new SessionController());
+        server.createContext("/api/reservations", new ReservationController());
+        server.createContext("/api/logout", new LogoutController());
         server.createContext("/", e -> serve(e, root));
         server.start();
         System.out.println("Moffat Bay Lodge: http://localhost:7070/");
