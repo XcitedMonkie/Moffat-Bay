@@ -1,309 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Moffat Bay Lodge</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create an Account | Moffat Bay Lodge</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #1e2d24; /* Deep forest fallback color */
-    background-image: 
-        linear-gradient(rgba(18, 32, 23, 0.35), rgba(18, 32, 23, 0.45)),
-        url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTagE1abAI4vM61HTbyxykF8qU_j1VuHG5hlmpNMZH9Xf3VXbSdXwbBpOM&s");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #2c2c2c;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-        /* ========================================
-           TOP NAVIGATION BAR
-        ======================================== */
-        .site-header {
-            background-color: #ffffff;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid #d5cec2;
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: 1px solid #ccc;
-            padding: 0.4rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        .main-nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .main-nav a {
-            text-decoration: none;
-            color: #222222;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.2s ease;
-        }
-
-        .main-nav a:hover,
-        .main-nav a[aria-current="page"] {
-            color: #1f442c;
-        }
-
-        /* ========================================
-           CENTERED REGISTRATION CARD
-        ======================================== */
-        .auth-page {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2.5rem 1rem;
-        }
-
-        .registration-card {
-    background-color: rgba(255, 255, 255, 0.96);
-    width: 100%;
-    max-width: 440px;
-    padding: 2.5rem 2.75rem;
-    border-radius: 10px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
-        .card-header {
-            text-align: center;
-            margin-bottom: 1.75rem;
-        }
-
-        .card-header h1 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.85rem;
-            font-weight: 700;
-            color: #222222;
-            margin-bottom: 0.4rem;
-        }
-
-        .card-header .subtitle {
-            font-size: 0.85rem;
-            color: #555555;
-        }
-
-        /* ========================================
-           SINGLE-COLUMN FORM FIELDS
-        ======================================== */
-        .form-group {
-            margin-bottom: 1.15rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: #333333;
-            margin-bottom: 0.35rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.65rem 0.75rem;
-            font-size: 0.95rem;
-            color: #222222;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #1f442c;
-            box-shadow: 0 0 0 3px rgba(31, 68, 44, 0.12);
-        }
-
-        /* ========================================
-           REGISTER BUTTON & ALERTS
-        ======================================== */
-        .btn-primary {
-            width: 100%;
-            margin-top: 0.75rem;
-            padding: 0.8rem;
-            background-color: #1f442c; 
-            color: #ffffff;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #163320;
-        }
-
-        .status-box {
-            padding: 0.75rem 1rem;
-            border-radius: 5px;
-            margin-bottom: 1.15rem;
-            font-size: 0.85rem;
-            display: none;
-        }
-
-        .status-box.is-error {
-            display: block;
-            background-color: #fdf2f2;
-            color: #9b1c1c;
-            border: 1px solid #f8b4b4;
-        }
-
-        .status-box.is-success {
-            display: block;
-            background-color: #f0fdf4;
-            color: #166534;
-            border: 1px solid #bbf7d0;
-        }
-
-        .status-box a {
-            color: inherit;
-            font-weight: 700;
-            text-decoration: underline;
-        }
-
-        /* ========================================
-           CARD FOOTER
-        ======================================== */
-        .card-footer {
-            margin-top: 1.25rem;
-            text-align: center;
-            font-size: 0.82rem;
-            color: #555555;
-        }
-
-        .card-footer a {
-            color: #1f442c;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .card-footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* ========================================
-           MOBILE NAVIGATION
-        ======================================== */
-        @media (max-width: 900px) {
-            .menu-toggle {
-                display: inline-block;
-            }
-
-            .main-nav {
-                display: none;
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-                padding-top: 1rem;
-            }
-
-            .main-nav.is-open {
-                display: flex;
-            }
-
-            .site-header {
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/auth.css">
+    <script defer src="js/nav-session.js"></script>
 </head>
-<body>
-
-    <header class="site-header">
-        <button id="menuToggle"
-                class="menu-toggle"
-                aria-expanded="false"
-                aria-controls="mainNav"
-                aria-label="Open navigation menu">
-            Menu
-        </button>
-
-        <nav id="mainNav" class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="reservation-test/reservation.html">Book a Room</a>
-            <a href="lookup.html">Reservation Lookup</a>
-            <a href="register.html" aria-current="page">Register</a>
-        </nav>
-    </header>
-
-    <main class="auth-page">
-        <section class="registration-card" aria-labelledby="reg-heading">
-            <div class="card-header">
-                <h1 id="reg-heading">Create an Account</h1>
-                <p class="subtitle">Register to make reservations at Moffat Bay Lodge.</p>
+<body class="auth-body">
+    <div class="site-shell auth-shell">
+        <header class="site-header">
+            <div class="header-container">
+                <a href="index.html" class="site-logo">
+                    <span class="logo-main">MOFFAT BAY</span>
+                    <span class="logo-sub">LODGE</span>
+                </a>
+                <button
+                    class="menu-toggle" id="menuToggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mainNav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav
+                    class="main-nav"
+                    id="mainNav"
+                    aria-label="Main navigation">
+                    <a href="index.html" >Home</a>
+                    <a href="about.html">About</a>
+                    <a href="attractions.html">Attractions</a>
+    
+                    <!-- <a href="login.html">Login</a> -->
+                    <!-- DF- Updated this to display Login or the customer's first name -->
+                    <a href="login.html" id="loginLink" class="active">Login</a>
+                </nav>
+                <a href="reservation-test/reservation.html" class="btn btn-primary">
+                    Book Your Stay &rarr;
+                </a>
             </div>
-
-            <div id="regStatus" class="status-box" role="status" aria-live="polite"></div>
-
-            <form id="registrationForm" novalidate>
-                <div class="form-group">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" maxlength="100" required autocomplete="given-name">
-                </div>
-
-                <div class="form-group">
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" maxlength="100" required autocomplete="family-name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email" maxlength="255" required autocomplete="email">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" maxlength="20" required autocomplete="tel">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" minlength="8" required autocomplete="new-password">
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" required autocomplete="new-password">
-                </div>
-
-                <button type="submit" class="btn-primary">Register</button>
-            </form>
-
-            <footer class="card-footer">
-                <p>Already have an account? <a href="login.html">Log In</a></p>
-            </footer>
-        </section>
-    </main>
-
+        </header>
+        <main class="auth-main">
+            <section class="auth-layout">
+                <aside class="auth-story">
+                    <span class="section-eyebrow">YOUR ISLAND ESCAPE</span>
+                    <h2>Your adventure begins here.</h2>
+                    <p>Make yourself at home. Create an account to plan your next stay on Joviedsa Island.</p>
+                </aside>
+                <section class="auth-card" aria-labelledby="auth-title">
+                    <span class="section-eyebrow">JOIN US</span>
+                    <h1 id="auth-title">Create an Account</h1>
+                    <p class="auth-intro">Register to make reservations at Moffat Bay Lodge.</p>
+                    <div id="bookingNotice" class="booking-auth-notice" hidden>
+                        <strong>One quick step before your stay!</strong>
+                        <span>Create your account and we’ll take you right back to your reservation.</span>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div id="regStatus" class="status-box" role="status" aria-live="polite"></div>
+                    <form id="registrationForm" novalidate>
+                        <div class="form-group">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" id="firstName" name="firstName" maxlength="100" required autocomplete="given-name">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" id="lastName" name="lastName" maxlength="100" required autocomplete="family-name">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" maxlength="255" required autocomplete="email">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" maxlength="20" required autocomplete="tel">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" minlength="8" required autocomplete="new-password">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" required autocomplete="new-password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create My Account &rarr;</button>
+                    </form>
+                    <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+                </section>
+            </section>
+        </main>
+        <footer class="auth-footer">&copy; 2026 Moffat Bay Lodge. All rights reserved.</footer>
+    </div>
     <script src="js/shared.js" defer></script>
+    <script src="js/booking-redirect.js" defer></script>
     <script src="js/register.js" defer></script>
-
 </body>
 </html>
