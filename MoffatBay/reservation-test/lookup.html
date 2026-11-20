@@ -15,6 +15,7 @@
     <link href="../css/lookup.css" rel="stylesheet"/>
     <script defer="" src="../js/shared.js"></script>
     <script defer="" src="../js/lookup.js"></script>
+    <script defer src="../js/nav-session.js"></script>
 </head>
 
 <body class="lookup-page">
@@ -40,7 +41,7 @@
                     <a href="../index.html">Home</a>
                     <a href="../about.html">About</a>
                     <a href="../attractions.html">Attractions</a>
-                    <a href="../login.html">Login</a>
+                    <a href="../login.html" id="loginLink">Login</a>
                 </nav>
                 <a class="btn btn-primary" href="reservation.html">Book Your Stay &rarr;</a>
             </div>
@@ -53,7 +54,7 @@
                 <h1 id="pageTitle">
                     Find your reservation.
                 </h1>
-                <p>Your plans are only a confirmation number away.</p>
+                <p>No account needed. Your booking details are just a confirmation number away.</p>
             </div>
             <div aria-hidden="true" class="booking-hero-tear torn-edge"></div>
         </section>
@@ -65,13 +66,13 @@
                     </span>
                     <h2>Find your reservation.</h2>
                     <p class="small muted">
-                        Already booked? Enter your confirmation number and email to view your stay.</p>
+                        Enter both your confirmation number and the email address used when booking to securely view one reservation.</p>
                     <form class="lookup-form" id="lookupForm" novalidate="">
                         <div>
                             <label for="lookupNumber">
                                 Confirmation number
                             </label>
-                            <input autocomplete="off" id="lookupNumber" placeholder="e.g. MBL-DEMO24" required=""/>
+                            <input autocomplete="off" id="lookupNumber" placeholder="e.g. MBL-A1B2C3D4E5F6" required=""/>
                         </div>
                         <div>
                             <label for="lookupEmail">
@@ -105,7 +106,8 @@
                         <li><a href="../about.html">About Us</a></li>
                         <li><a href="../index.html#accommodations">Accommodations</a></li>
                         <li><a href="../attractions.html">Island Adventures</a></li>
-                        <li><a href="reservation.html">Reservations</a></li>
+                        <li><a href="my-reservations.html">My Reservations</a></li>
+                        <li><a href="lookup.html">Find a Reservation</a></li>
                     </ul>
                 </nav>
                 <div class="footer-contact">
