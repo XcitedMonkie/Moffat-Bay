@@ -26,7 +26,9 @@ public final class LodgeServer {
         if (path.equals("/")) path = "/index.html";
             Path file = root.resolve(path.substring(1)).normalize();
             String relative = root.relativize(file).toString().replace('\\', '/');
-            boolean allowed = Set.of("index.html", "about.html", "attractions.html", "contact.html", "login.html", "register.html", "reservation.html").contains(relative)
+            
+            //DF - Updated 11/20 Added in the contact-Preview
+            boolean allowed = Set.of("index.html", "about.html", "attractions.html", "contact.html", "login.html", "register.html", "reservation.html", "contact-preview.html").contains(relative) 
                 || relative.startsWith("css/") || relative.startsWith("js/") || relative.startsWith("images/") || relative.startsWith("reservation-test/");
         if (!e.getRequestMethod().equals("GET")) { e.sendResponseHeaders(405, -1); e.close(); return; }
         if (!file.startsWith(root) || !allowed || !Files.isRegularFile(file) || !file.toRealPath().startsWith(root)) {

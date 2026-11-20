@@ -6,6 +6,9 @@ C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\GuestR
 C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\GuestResponse.java
 C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\LodgeServer.java
 C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\LoginController.java
+C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\LogoutController.java
+C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\ReservationController.java
+C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\ReservationDAO.java
 C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\RoomType.java
 C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\RoomTypeController.java
 C:\Tomcat\apache-tomcat-11.0.24\webapps\MoffatBay\src\main\java\moffatbay\RoomTypeDAO.java

@@ -1,0 +1,146 @@
+
+/* =========================================
+   CONTACT US FORM
+========================================= */
+
+.contact-simple {
+    background-color: var(--parchment);
+    padding: 50px 25px 80px;
+}
+
+.contact-simple h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.contact-simple > .content-container > p {
+    margin-bottom: 25px;
+    color: var(--text-muted);
+}
+
+/* Contact form card */
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 100%;
+    max-width: 650px;
+    margin: 30px 0 0;
+    padding: 35px;
+
+    background-color: var(--cream);
+    border: 1px solid #e0d2bb;
+    border-radius: 6px;
+    box-shadow: var(--shadow-photo);
+}
+
+/* Each label and input */
+#contactForm .contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+/* Field labels */
+#contactForm label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--forest);
+}
+
+/* Textboxes and message area */
+#contactForm input,
+#contactForm textarea {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--forest);
+
+    background-color: #fffdf6;
+    border: 1px solid #d5c9b7;
+    border-radius: 5px;
+}
+
+/* Input focus */
+#contactForm input:focus,
+#contactForm textarea:focus {
+    outline: 2px solid var(--moss);
+    outline-offset: 1px;
+}
+
+/* Larger message field */
+#contactForm textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Send button */
+#contactForm button {
+    width: 100%;
+    padding: 15px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Submission message */
+#contactStatus {
+    margin: 0;
+    font-size: 14px;
+    color: var(--moss);
+}
+
+#contactStatus:empty {
+    display: none;
+}
+
+/* Mobile styling */
+@media (max-width: 650px) {
+    #contactForm {
+        padding: 22px;
+    }
+
+    .contact-simple h2 {
+        font-size: 30px;
+    }
+}
+
+
+/* Email Preview Page */
+
+.email-preview {
+    background-color: var(--cream);
+    border: 1px solid #e0d2bb;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 30px 0;
+    max-width: 700px;
+    box-shadow: var(--shadow-photo);
+}
+
+.email-preview p {
+    margin-bottom: 15px;
+    color: var(--forest);
+    line-height: 1.7;
+}
+
+.email-preview strong {
+    font-weight: 700;
+}
+
+.email-preview hr {
+    border: none;
+    border-top: 1px solid #d5c9b7;
+    margin: 25px 0;
+}
+
+#previewMessage {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
