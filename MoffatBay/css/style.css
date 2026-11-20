@@ -1222,7 +1222,7 @@ body {
     font-size: 16px;
 }
 
-#registrationForm input:focus {
+#registrationForm input: focus {
     outline: 2px solid #39775e;
     border-color: #39775e;
 }
@@ -1239,7 +1239,7 @@ body {
     cursor: pointer;
 }
 
-#registrationForm button:hover {
+#registrationForm button: hover {
     background-color: #39775e;
 }
 
@@ -1259,5 +1259,121 @@ body {
     .registration {
         margin: 20px 15px;
         padding: 20px;
+    }
+}
+
+/* =========================================
+   LOGGED-IN ACCOUNT NAVIGATION
+========================================= */
+
+.account-nav {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.account-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: var(--forest);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.account-nav-toggle: hover,
+.account-nav-toggle[aria-expanded="true"] {
+    color: var(--moss);
+}
+
+.account-nav-toggle:focus-visible,
+.account-nav-dropdown a:focus-visible,
+.account-nav-dropdown button:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 3px;
+}
+
+.account-nav-dropdown[hidden] {
+    display: none !important;
+}
+
+.account-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: max-content;
+    min-width: 210px;
+    padding: 9px;
+    border: 1px solid rgba(68, 97, 75, 0.18);
+    border-radius: 6px;
+    background: var(--paper-note);
+    box-shadow: 0 12px 28px rgba(25, 60, 48, 0.18);
+}
+
+.main-nav .account-nav-dropdown a,
+.account-nav-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 11px 12px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--forest);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.main-nav .account-nav-dropdown a: hover,
+.account-nav-dropdown button: hover {
+    background: var(--parchment);
+    color: var(--forest);
+}
+
+.account-nav-dropdown button {
+    border-top: 1px solid rgba(68, 97, 75, 0.2);
+    border-radius: 0 0 4px 4px;
+}
+
+.account-nav-dropdown p[role="alert"] {
+    padding: 7px 12px;
+    font-size: 12px;
+    color: #9a3228;
+}
+
+.account-nav-dropdown p[hidden] {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .account-nav {
+        width: 100%;
+        text-align: center;
+    }
+
+    .account-nav-toggle {
+        width: 100%;
+    }
+
+    .account-nav-dropdown {
+        position: static;
+        width: min(100%, 290px);
+        min-width: 0;
+        margin: 4px auto 0;
+        box-shadow: 0 5px 15px rgba(25, 60, 48, 0.12);
     }
 }
