@@ -15,6 +15,10 @@
     <link href="../css/reservation.css" rel="stylesheet"/>
     <script defer="" src="../js/shared.js"></script>
     <script defer="" src="../js/reservation.js"></script>
+    <script defer src="../js/nav-session.js"></script>
+    <script>document.documentElement.classList.add("booking-auth-pending");</script>
+    <style>html.booking-auth-pending body{visibility:hidden}</style>
+    <script defer src="../js/booking-auth-gate.js"></script>
 </head>
 
 <body class="reservation-page">
@@ -40,7 +44,7 @@
                     <a href="../index.html">Home</a>
                     <a href="../about.html">About</a>
                     <a href="../attractions.html">Attractions</a>
-                    <a href="../login.html">Login</a>
+                    <a href="../login.html" id="loginLink">Login</a>
                 </nav>
                 <a class="btn btn-primary" href="reservation.html">Book Your Stay &rarr;</a>
             </div>
