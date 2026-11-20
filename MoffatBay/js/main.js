@@ -1,15 +1,10 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
-
 menuToggle.addEventListener("click", () => {
     const isOpen = mainNav.classList.toggle("is-open");
     menuToggle.setAttribute("aria-expanded", isOpen);
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-    );
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
 });
-
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         mainNav.classList.remove("is-open");
@@ -17,7 +12,6 @@ document.addEventListener("keydown", (event) => {
         menuToggle.setAttribute("aria-label", "Open navigation menu");
     }
 });
-
 window.addEventListener("resize", () => {
     if (window.innerWidth > 900) {
         mainNav.classList.remove("is-open");
@@ -25,23 +19,17 @@ window.addEventListener("resize", () => {
         menuToggle.setAttribute("aria-label", "Open navigation menu");
     }
 });
-
 document.addEventListener("click", (event) => {
-    if (
-        mainNav.classList.contains("is-open") &&
-        !event.target.closest(".site-header")
-    ) {
+    if (mainNav.classList.contains("is-open") &&
+        !event.target.closest(".site-header")) {
         mainNav.classList.remove("is-open");
         menuToggle.setAttribute("aria-expanded", "false");
         menuToggle.setAttribute("aria-label", "Open navigation menu");
     }
 });
-
-
 /* ========================================
    ROOM DETAILS POPUP
 ======================================== */
-
 const roomPresentation = {
     morel: {
         name: "The Morel the Merrier",
@@ -51,7 +39,6 @@ const roomPresentation = {
         beds: "2 Full Beds",
         size: "300 sq. ft.",
     },
-
     pine: {
         name: "The Knotty Pine",
         type: "Queen",
@@ -60,7 +47,6 @@ const roomPresentation = {
         beds: "1 Queen Bed",
         size: "260 sq. ft.",
     },
-
     hoots: {
         name: "The Two Hoots",
         type: "Double Queen Beds",
@@ -69,7 +55,6 @@ const roomPresentation = {
         beds: "2 Queen Beds",
         size: "380 sq. ft.",
     },
-
     suite: {
         name: "The Unbe-leaf-able Suite",
         type: "King",
@@ -79,14 +64,14 @@ const roomPresentation = {
         size: "340 sq. ft.",
     }
 };
-
 // Room names link the existing visual assets to the team's database rows.
 const rooms = {};
 const roomStatus = document.querySelector("#room-status");
 async function loadRooms() {
     try {
         const response = await fetch("/api/room-types");
-        if (!response.ok) throw new Error("Room catalog unavailable");
+        if (!response.ok)
+            throw new Error("Room catalog unavailable");
         const catalog = await response.json();
         const priceFormat = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
         for (const button of roomButtons) {
@@ -94,7 +79,11 @@ async function loadRooms() {
             const presentation = roomPresentation[key];
             const row = catalog.find(item => item.typeName === presentation.name);
             const card = button.closest(".room-card");
-            if (!row) { card.hidden = true; card.style.display = "none"; continue; }
+            if (!row) {
+                card.hidden = true;
+                card.style.display = "none";
+                continue;
+            }
             const price = priceFormat.format(row.basePrice) + " / night";
             rooms[key] = { ...presentation, name: row.typeName, description: row.description ?? "", guests: `Up to ${row.maxGuest} Guests`, price, roomTypeId: row.roomTypeId };
             card.querySelector(".room-name").textContent = row.typeName.toUpperCase();
@@ -102,29 +91,25 @@ async function loadRooms() {
             button.disabled = false;
         }
         roomStatus.textContent = Object.keys(rooms).length ? "" : "No accommodations are currently listed.";
-    } catch (error) {
+    }
+    catch (error) {
         roomStatus.textContent = "Room details are temporarily unavailable. Please try refreshing the page.";
         console.error(error);
     }
 }
-
 const roomModal = document.querySelector("#room-modal");
 const roomButtons = document.querySelectorAll(".room-details-btn");
 const closeRoomModal = document.querySelector(".room-modal-close");
 roomButtons.forEach(button => { button.disabled = true; });
 loadRooms();
-
 // open the popup when view details is clicked
-
 roomButtons.forEach((button) => {
     button.addEventListener("click", () => {
-
         // find which room was clicked
         const roomId = button.dataset.room;
         const room = rooms[roomId];
-
-        if (!room) return;
-
+        if (!room)
+            return;
         // update the popup with that room's information
         document.querySelector("#modal-room-name").textContent = room.name;
         document.querySelector("#modal-room-type").textContent = room.type;
@@ -133,63 +118,21 @@ roomButtons.forEach((button) => {
         document.querySelector("#modal-room-guests").textContent = room.guests;
         document.querySelector("#modal-room-size").textContent = room.size;
         document.querySelector("#modal-room-price").textContent = room.price;
-
         // update the room photo
         const roomImage = document.querySelector("#modal-room-image");
         roomImage.src = room.image;
         roomImage.alt = room.alt;
-
         // Pass the real database ID to the booking page. The prototype also needs its legacy key.
         const bookingKey = roomId === "pine" ? "knotty" : roomId;
         document.querySelector(".room-modal-book").href = `reservation-test/reservation.html?roomTypeId=${encodeURIComponent(room.roomTypeId)}&room=${encodeURIComponent(bookingKey)}`;
         roomModal.showModal();
     });
 });
-
-
 closeRoomModal.addEventListener("click", () => {
     roomModal.close();
 });
-
-
 roomModal.addEventListener("click", (event) => {
     if (event.target === roomModal) {
         roomModal.close();
     }
 });
-
-
-/* DF - Added this part to check if a user is logged in */
-
-// Check whether the customer is logged in.
-async function checkLoginStatus() {
-
-    const loginLink = document.getElementById("loginLink");
-
-    if (!loginLink) return;
-
-    try {
-        // Ask the Java server for the current session.
-        const response = await fetch("/api/session", {
-            cache: "no-store"
-        });
-
-        if (!response.ok) return;
-
-        const session = await response.json();
-
-        if (session.loggedIn && session.firstName) {
-            // Replace Login with the customer's first name.
-            loginLink.textContent = session.firstName;
-
-            // No account page exists yet, so don't navigate anywhere.
-            loginLink.removeAttribute("href");
-        }
-
-    } catch (error) {
-        console.error("Unable to check login status:", error);
-    }
-}
-
-// Check the session when the landing page loads.
-checkLoginStatus();
