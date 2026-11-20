@@ -1,59 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Login | Moffat Bay Lodge</title>
-
-    <!-- Shared website styling -->
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Welcome Back | Moffat Bay Lodge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Login page styling -->
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/auth.css">
+    
+    <script defer src="js/nav-session.js"></script>
 </head>
-<body>
-
-    <h1>Welcome to Moffat Bay Lodge</h1>
-
-    <h2>Member Login</h2>
-
-    <p>Please log in to access your account.</p>
-
-    <!-- Login Form -->
-    <form id="loginForm">
-
-        <label for="email">Email Address:</label>
-        <input
-            type="email"
-            id="email"
-            name="email"
-            required
-        >
-
-        <br><br>
-
-        <label for="password">Password:</label>
-        <input
-            type="password"
-            id="password"
-            name="password"
-            required
-        >
-
-        <br><br>
-
-        <button type="submit">Login</button>
-
-    </form>
-
-    <!-- Login messages will appear here -->
-    <p id="loginMessage" role="status" aria-live="polite"></p>
-
-    <p>Don't have an account? <a href="register.html">Register Here</a></p>
-
-    <script src="js/login.js"></script>
-
+<body class="auth-body">
+    <div class="site-shell auth-shell">
+        <header class="site-header">
+            <div class="header-container">
+                <a href="index.html" class="site-logo">
+                    <span class="logo-main">MOFFAT BAY</span>
+                    <span class="logo-sub">LODGE</span>
+                </a>
+                <button
+                    class="menu-toggle" id="menuToggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mainNav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav
+                    class="main-nav"
+                    id="mainNav"
+                    aria-label="Main navigation">
+                    <a href="index.html" >Home</a>
+                    <a href="about.html">About</a>
+                    <a href="attractions.html">Attractions</a>
+    
+                    <!-- <a href="login.html">Login</a> -->
+                    <!-- DF- Updated this to display Login or the customer's first name -->
+                    <a href="login.html" id="loginLink" class="active">Login</a>
+                </nav>
+                <a href="reservation-test/reservation.html" class="btn btn-primary">
+                    Book Your Stay &rarr;
+                </a>
+            </div>
+        </header>
+        <main class="auth-main">
+            <section class="auth-layout">
+                <aside class="auth-story">
+                    <span class="section-eyebrow">YOUR ISLAND ESCAPE</span>
+                    <h2>A little closer to the island.</h2>
+                    <p>Your next getaway is waiting. Sign in to make yourself at home again.</p>
+                </aside>
+                <section class="auth-card" aria-labelledby="auth-title">
+                    <span class="section-eyebrow">GUEST ACCOUNT</span>
+                    <h1 id="auth-title">Welcome Back</h1>
+                    <p class="auth-intro">Log in to access your Moffat Bay Lodge account.</p>
+                    <div id="bookingNotice" class="booking-auth-notice" hidden>
+                        <strong>Before you book...</strong>
+                        <span>Log in or create an account to reserve your stay. We’ll return you to your room selection afterward.</span>
+                    </div>
+                    <div class="section-divider"></div>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required autocomplete="email"></div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required autocomplete="current-password"></div>
+                        <button class="btn btn-primary" type="submit">Log In &rarr;</button>
+                    </form>
+                    <p id="loginMessage" role="status" aria-live="polite"></p>
+                    <p class="auth-switch">New to Moffat Bay? <a href="register.html">Create an account</a></p>
+                </section>
+            </section>
+        </main>
+        <footer class="auth-footer">&copy; 2026 Moffat Bay Lodge. All rights reserved.</footer>
+    </div>
+    <script src="js/shared.js" defer></script>
+    <script src="js/booking-redirect.js" defer></script>
+    <script src="js/login.js" defer></script>
 </body>
 </html>
